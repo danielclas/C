@@ -11,13 +11,12 @@ int main()
     printf("Ingrese un numero: ");
     scanf("%d", &numero);
 
-    for(;numero>0;numero--)
+    for(numero-=1;numero>0;numero--)
     {
-
         suma+=numero;
-
     }
 
+    suma=suma-numero;
 
     printf("La suma es: %d", suma);
     return 0;
