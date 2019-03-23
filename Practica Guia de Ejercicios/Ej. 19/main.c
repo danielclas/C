@@ -7,23 +7,16 @@ int main()
 {
     int numero;
     int suma=0;
-    char respuesta='s';
 
-    do
+    printf("Ingrese un numero: ");
+    scanf("%d", &numero);
+
+    for(;numero>0;numero--)
     {
-        printf("Ingrese un numero entero: ");
-        fflush(stdin);
-        scanf("%d", &numero);
 
         suma+=numero;
 
-        printf("Presione s para ingresar otro numero o cualquier tecla para salir: ");
-        fflush(stdin);
-        scanf("%c", &respuesta);
-
-        system("cls");
-
-    }while(respuesta=='s');
+    }
 
 
     printf("La suma es: %d", suma);
