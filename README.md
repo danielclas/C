@@ -1,2 +1,2 @@
-# labcomp1
-Laboratorio de Computacion 1
+# Ejercicios de Laboratorio de Computacion 1 y Programación 1
+
