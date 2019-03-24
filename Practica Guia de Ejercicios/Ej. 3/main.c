@@ -11,6 +11,7 @@ Escribir un programa que realice las siguientes acciones
 */
 int main()
 {
+
     int nro1;
     int nro2;
     int producto;
@@ -21,6 +22,8 @@ int main()
 
     printf("Ingrese nro 2: ");
     scanf("%d", &nro2);
+
+    system("cls");
 
     producto=nro1*nro2;
     cuadrado=nro1*nro1;

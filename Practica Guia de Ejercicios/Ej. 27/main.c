@@ -9,7 +9,7 @@ un triángulo. Teniendo en cuenta que la suma de los dos
 
 */
 
-//Preguntar por que ingresando valores 100, 99 y 2, el valor medio es 79
+//Preguntar por que ingresando valores 100, 99 y 2, el valor medio es 79, o 600-500-10/10-500-600c
 
 int main()
 {
