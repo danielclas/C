@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1553725375 source:c:\users\dani\desktop\practica guia de ejercicios\new folder (2)\laboratorio-1\practica guia de ejercicios\ej. 44\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+
