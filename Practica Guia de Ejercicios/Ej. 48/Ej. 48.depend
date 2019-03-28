@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1553801717 source:c:\users\alumno\desktop\nueva carpeta\ej. 48\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+
