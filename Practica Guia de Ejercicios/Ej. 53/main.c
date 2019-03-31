@@ -16,6 +16,7 @@ int main()
     int legajo;
     int sexo;
     int cont=45;
+    int contMujeres=0;
     int legMujeres[50];
     int contHombres=0;
     int i,j;
@@ -31,24 +32,30 @@ int main()
         }
         else
         {
-            if(sexo==1){
-                printf("Ingrese el legajo: ");
-                scanf("%d", &legajo);
+            if(sexo==1)
+            {
+                for ( i = 0; i < 50; i++ )
+                    {
+                        printf("Ingrese el legajo: ");
+                        scanf("%d", &legajo);
 
-                while(legajo<1000 || legajo>9999){
-                    printf("Ingrese legajo valido: ");
-                    scanf("%d", &legajo);
-                }
-                for ( i = 0; i < 50; i++ ) {
-                    legMujeres[i] = legMujeres; /* set element at location i to i + 100 */
+                        while(legajo<1000 || legajo>9999)
+                        {
+                            printf("Ingrese legajo valido: ");
+                            scanf("%d", &legajo);
+                        }
+
+                        legMujeres[i] = legajo;
+                        contMujeres++;
+                        break;
+
                     }
-                system("cls");
 
-                }
+                system("cls");
+            }
             else{
 
                 contHombres++;
-
                 printf("Ingrese el legajo: ");
                 scanf("%d", &legajo);
 
@@ -56,7 +63,9 @@ int main()
                     printf("Ingrese legajo valido: ");
                     scanf("%d", &legajo);
                 }
+
             system("cls");
+
             }
         }
 
@@ -64,10 +73,12 @@ int main()
 
     }while(cont<50);
 
-    printf("Cantidad de empleados hombres: %d", contHombres);
-    for (j = 0; j < 50; j++ ) {
-      printf("Element[%d] = %d\n", j, legMujeres[j] );
-   }
+    printf("Cantidad de empleados hombres: %d\n", contHombres);
+
+
+        printf("Lista de legajos de mujeres: %d\n", legMujeres[0]);
+
+
 
     return 0;
 }
