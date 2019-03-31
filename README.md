@@ -1,2 +1,2 @@
-# Ejercicios de Laboratorio de Computacion 1 y Programación 1
+# Ejercicios de Laboratorio de Computacion 1/Programación 1
 
