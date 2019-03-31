@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1554058099 source:c:\users\dani\desktop\programacion\tp 1\ej. 54\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+

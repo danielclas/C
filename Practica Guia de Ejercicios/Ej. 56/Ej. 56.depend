@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1554061044 source:c:\users\dani\desktop\programacion\tp 1\ej. 56\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clas.h"
+
+1553974345 c:\users\dani\desktop\programacion\tp 1\ej. 56\clas.h
+
