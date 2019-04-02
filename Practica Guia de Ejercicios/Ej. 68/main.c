@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>n
+#include <stdlib.h>
 /*68. Un restaurante que dispone de 50 mesas,
  necesita llevar cuenta de las ventas diarias.
 Para ello cada vez que una mesa es ocupada
@@ -12,17 +12,18 @@ c- Indicar cuales fueron las mesas que no se ocuparon en todo el día.
 d- Listado ordenado por venta que muestre Nro de mesa Venta
 */
 int menu ();
+void ordenarVentas(float mesas[], int tam);
 
 int main()
 {
-    int mesas[50]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    float mesas[50]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     //Preguntar como inicializar vector por defecto en 0!
     int rta;
     float ventaTotal=0;
 
 
     do{
-        //system("cls");
+
         rta=menu();
         switch(rta){
 
@@ -30,6 +31,7 @@ int main()
             float consumo;
 
             case 1:
+                system("cls");
                 printf("\n\nEn qué mesa desea ingresar un consumo?: ");
                 scanf("%d", &i);
                 printf("\n\nIngrese el valor del consumo: ");
@@ -39,6 +41,8 @@ int main()
                 }else{
                     mesas[i]+=consumo;
                 }
+                printf("\n\n\n");
+                system("pause");
                 system("cls");
                 break;
             case 2:
@@ -48,10 +52,13 @@ int main()
                          ventaTotal+=mesas[i];
                     }
                 }
-                printf("\n\nVenta total del día: %.2f", &ventaTotal);
+                printf("\n\nVenta total del día: %.2f", ventaTotal);
+                printf("\n\n\n");
+                system("pause");
+                system("cls");
                 break;
             case 3:
-                printf("\n\nLas mesas que no fueron ocupadas son: ");
+                printf("\n\nLas mesas que no fueron ocupadas son: \n");
                 for(i=0; i<50; i++){
 
                     if(mesas[i]==0){
@@ -59,27 +66,35 @@ int main()
                         printf("\nMesa %d", i);
                     }
                 }
+                printf("\n\n\n");
+                system("pause");
                 system("cls");
-
                 break;
             case 4:
+                system("cls");
+                ordenarVentas(mesas, 50);
+                printf("Listado ordenado: ");
+                printf("\n\nMesa || Ventas\n");
+                for(i=0; i<50; i++)
+                {
+                    printf("\n   %d     %.2f", i, mesas[i]);
+                }
+                printf("\n\n\n");
+                system("pause");
+                system("cls");
                 break;
             case 5:
                 printf("El programa ha finalizado.\n\n");
+                printf("\n\n\n");
+                system("pause");
+                system("cls");
                 break;
             default:
+                system("cls");
                 break;
-
-
-
         }
 
-
-
-
-
     }while(rta!='5');
-
 
     return 0;
 }
@@ -88,7 +103,7 @@ int menu ()
 {
     int opcion;
 
-    printf("----Opciones----\n\n");
+    printf("\n\n----Opciones----\n\n");
 
     printf("\t1- Ingresar un consumo");
     printf("\n\t2- Venta total del dia");
@@ -100,7 +115,24 @@ int menu ()
 
     return opcion;
 
+}
 
+void ordenarVentas (float mesas[], int tam){
 
+    float auxFloat;
+
+    for(int i=0; i<tam-1 ; i++){
+
+        for(int j=1; j<tam; j++){
+
+            if( mesas[i] < mesas[j]){
+
+                auxFloat = mesas[i];
+                mesas[i] = mesas[j];
+                mesas[j] = auxFloat;
+            }
+
+        }
+    }
 
 }
