@@ -12,11 +12,12 @@ c- Indicar cuales fueron las mesas que no se ocuparon en todo el día.
 d- Listado ordenado por venta que muestre Nro de mesa Venta
 */
 int menu ();
-void ordenarVentas(float mesas[], int tam);
+void ordenarVentas(float consumoMesa[], float mesas[], int tam);
 
 int main()
 {
-    float mesas[50]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    float mesas[50]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50};
+    float consumoMesa[50]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     //Preguntar como inicializar vector por defecto en 0!
     int rta;
     float ventaTotal=0;
@@ -36,13 +37,12 @@ int main()
                 scanf("%d", &i);
                 printf("\n\nIngrese el valor del consumo: ");
                 scanf("%f", &consumo);
-                if(mesas[i]==0){
-                    mesas[i]=consumo;
+                if(consumoMesa[i]==0){
+                    consumoMesa[i]=consumo;
                 }else{
-                    mesas[i]+=consumo;
+                    consumoMesa[i]+=consumo;
                 }
                 printf("\n\n\n");
-                system("pause");
                 system("cls");
                 break;
             case 2:
@@ -61,9 +61,9 @@ int main()
                 printf("\n\nLas mesas que no fueron ocupadas son: \n");
                 for(i=0; i<50; i++){
 
-                    if(mesas[i]==0){
+                    if(consumoMesa[i]==0){
 
-                        printf("\nMesa %d", i);
+                        printf("\nMesa %d", i+1);
                     }
                 }
                 printf("\n\n\n");
@@ -72,12 +72,12 @@ int main()
                 break;
             case 4:
                 system("cls");
-                ordenarVentas(mesas, 50);
+                ordenarVentas(consumoMesa, mesas, 50);
                 printf("Listado ordenado: ");
                 printf("\n\nMesa || Ventas\n");
                 for(i=0; i<50; i++)
                 {
-                    printf("\n   %d     %.2f", i, mesas[i]);
+                    printf("\n   %d     %.2f", i, consumoMesa[i]);
                 }
                 printf("\n\n\n");
                 system("pause");
@@ -117,7 +117,7 @@ int menu ()
 
 }
 
-void ordenarVentas (float mesas[], int tam){
+void ordenarVentas (float consumoMesa[], float mesas[], int tam){
 
     float auxFloat;
 
@@ -125,11 +125,15 @@ void ordenarVentas (float mesas[], int tam){
 
         for(int j=1; j<tam; j++){
 
-            if( mesas[i] < mesas[j]){
+            if( consumoMesa[i] < consumoMesa[j]){
 
                 auxFloat = mesas[i];
                 mesas[i] = mesas[j];
                 mesas[j] = auxFloat;
+
+                auxFloat = consumoMesa[i];
+                consumoMesa[i] = consumoMesa[j];
+                consumoMesa[j] = auxFloat;
             }
 
         }
