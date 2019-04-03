@@ -33,7 +33,7 @@ int main()
         system("cls");
     }
 
-    printf("\t\n\nPositivos\tNegativos");
+    printf("\tPositivos\tNegativos");
     for(int i=0 ; i<20 ; i++){
         printf("\n\t%d\t%d", positivos[i], negativos[i]);
     }
@@ -41,7 +41,7 @@ int main()
     positivosDecreciente(positivos, 20);
     negativosCreciente(negativos, 20);
 
-    printf("Positivos Decreciente\tNegativos Creciente ");
+    printf("\n\nPositivos Decreciente\tNegativos Creciente ");
     for(int i=0 ; i<20 ; i++){
         printf("\n\t%d\t\t%d", positivos[i], negativos[i]);
         }
