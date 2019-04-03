@@ -59,9 +59,9 @@ void ordenarMenAMay (int aOrdenar[], int variable[], int tam){
                 aOrdenar[i] = aOrdenar[j];
                 aOrdenar[j] = auxInt;
 
-                auxInt = aOrdenar[i];
-                aOrdenar[i] = aOrdenar[j];
-                aOrdenar[j] = auxInt;
+                auxInt = variable[i];
+                variable[i] = variable[j];
+                variable[j] = auxInt;
 
             }
         }
