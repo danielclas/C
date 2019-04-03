@@ -26,7 +26,7 @@ int main()
     float puntosAcum;//Para mostrar puntajes acumulados por todos los participantes
     float puntosTotalMax;
 
-    for(part=1;part<21;part++)
+    for(part=1;part<5;part++)
     {
         printf("--Participante %d--", part);
 
