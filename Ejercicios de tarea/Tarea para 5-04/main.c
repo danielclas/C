@@ -8,7 +8,7 @@ void duplicarVector (int vector[], int tam);
 void conseguirEntero (int vector[], int tam);
 void mostrarEnteros (int vector[], int tam);
 int funcionMenu ();
-void ordenarVector(int vector[], int tam, int flag);
+void ordenarEnteros(int vector[], int tam, int flag);
 //Flag 1 es creciente
 //Flag 0 es decreciente
 
@@ -40,17 +40,15 @@ int main()
             system("pause");
             break;
         case 4:
-            ordenarVector(enteros, 5, 1);
+            ordenarEnteros(enteros, 5, 0);
             break;
         case 5:
-            ordenarVector(enteros, 5, 0);
+            ordenarEnteros(enteros, 5, 1);
             break;
         default:
             system("cls");
             break;
-
         }
-
 
     }while(rta!=6);
 
@@ -98,6 +96,7 @@ void conseguirEntero (int enteros[], int tam){
 
 }
 
+
 void mostrarEnteros(int enteros[], int tam){
 
     int i;
@@ -108,7 +107,7 @@ void mostrarEnteros(int enteros[], int tam){
     }
 }
 
-void ordenarVector(int enteros[], int tam, int flag){
+void ordenarEnteros(int enteros[], int tam, int flag){
 
     int i, j, auxInt;
 
@@ -138,3 +137,5 @@ void ordenarVector(int enteros[], int tam, int flag){
 
 }
 }
+
+
