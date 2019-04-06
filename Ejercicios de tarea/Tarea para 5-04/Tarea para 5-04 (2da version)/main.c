@@ -6,13 +6,14 @@ Y otra que duplique los mismos.
 */
 void duplicarVector (int vector[], int tam);
 void conseguirEntero (int vector[], char *texto, int tam);
-void mostrarEnteros (int vector[], char *texto, int tam);
+void mostrarDatos(int legajos[], int notas[], int notas2[], float promedios[], int tam);
 int funcionMenu ();
 void ordenarEnteros(int vector[], int vector2[], int vector3[], int tam, int flag);
 void ordenarFlotantes(float vector[], int vector2[], int vector3[], int vector4[], int tam, int flag);
+void conseguirNomApe (char nomApe[][20], int tam);
 //Flag 1 es creciente
 //Flag 0 es decreciente
-
+//Faltarian validaciones de legajos y notas..
 
 int main()
 {
@@ -24,6 +25,7 @@ int main()
     int flag2=0;
     int flag3=0;
     int rta;
+    char nomApe[5][20];
     char *texto[10]={"legajo"};
     char *texto2[10]={"nota"};
     char *texto3[10]={"nota 2"};
@@ -35,6 +37,9 @@ int main()
 
         switch(rta){
 
+        case 0:
+            conseguirNomApe(nomApe, 5);
+            break;
         case 1:
             flag1=1;
             conseguirEntero(legajos, *texto, 5);
@@ -49,16 +54,10 @@ int main()
             break;
         case 4:
             if(flag1==1 && flag2==1 && flag3==1){
-                mostrarEnteros(legajos, *texto, 5);
-                printf("\n\n");
-                mostrarEnteros(notas, *texto2, 5);
-                printf("\n\n");
-                mostrarEnteros(notas2, *texto3, 5);
-                printf("\n\n");
                 for(int i=0 ; i<5 ; i++){
-                    promedios[i]=(notas[i]+notas2[i])/2;
-                    printf("\nPromedio #%d: %.2f", i, promedios[i]);
+                    promedios[i]=(float)(notas[i]+notas2[i])/2;
                 }
+                mostrarDatos(legajos, notas, notas2, promedios, 5);
             }else{
                 puts("Debe ingresar todos los datos antes de poder mostrarlos");
             }
@@ -70,11 +69,7 @@ int main()
                 duplicarVector(legajos, 5);
                 duplicarVector(notas, 5);
                 duplicarVector(notas2, 5);
-                mostrarEnteros(legajos, *texto, 5);
-                printf("\n\n");
-                mostrarEnteros(notas, *texto2, 5);
-                printf("\n\n");
-                mostrarEnteros(notas2, *texto3, 5);
+                mostrarDatos(legajos, notas, notas2, promedios, 5);
             }else{
                 puts("Debe ingresar todos los datos antes de poder duplicarlos y mostrarlos");
             }
@@ -129,7 +124,8 @@ int funcionMenu(){
     int rta;
 
     printf("Opciones: ");
-    printf("\n\n\t1- Ingrese 5 legajos");
+    printf("\n\n\t0- Ingrese 5 nombres y apellidos");
+    printf("\n\t1- Ingrese 5 legajos");
     printf("\n\t2- Ingrese 5 notas");
     printf("\n\t3- Ingrese 5 notas 2");
     printf("\n\n\t4- Mostrar datos ingresados y promedios");
@@ -163,14 +159,29 @@ void conseguirEntero (int enteros[], char *texto, int tam){
 
 }
 
+void conseguirNomApe(char nomApe[][20], int tam){
 
-void mostrarEnteros(int enteros[], char *texto, int tam){
+    for(int i=0 ; i<5 ; i++){
+        printf("Ingrese nombre y apellido #%d: ", i);
+        //fflush(stdin);
+        scanf("%s", nomApe[i]);
+        system("cls");
+    }
+
+
+}
+void mostrarDatos(int legajos[], int notas[], int notas2[], float promedios[], int tam){
 
     int i;
 
-    for(i=0 ; i<tam ; i++){
+    /*for(i=0 ; i<tam ; i++){
 
         printf("\n\t%s %d: %d", texto, i, enteros[i]);
+    }*/
+
+    printf("\n\tLegajos\tNotas\tNotas2\tPromedios");
+    for(int i=0 ; i<tam ; i++){
+        printf("\n\t%d\t%d\t%d\t%.2f", legajos[i], notas[i], notas2[i], promedios[i]);
     }
 }
 
