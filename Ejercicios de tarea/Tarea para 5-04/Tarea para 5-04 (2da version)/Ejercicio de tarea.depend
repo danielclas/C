@@ -7,7 +7,10 @@
 	<stdio.h>
 	<stdlib.h>
 
-1554579574 source:c:\users\dani\desktop\new folder\laboratorio-1\ejercicios de tarea\tarea para 5-04\tarea para 5-04 (2da version)\main.c
+1554581205 source:c:\users\dani\desktop\new folder\laboratorio-1\ejercicios de tarea\tarea para 5-04\tarea para 5-04 (2da version)\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
 
