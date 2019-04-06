@@ -8,8 +8,6 @@ Ejercicio para practicar funcion que ordene primero por nombre, y despues por se
 void ordenarPorNombre (char nombre[][20], char sexos[], int tam);
 void ordenarPorNombreYSexo (char nombre[][20], char sexos[], int tam);
 
-
-
 int main()
 {
 
@@ -47,11 +45,8 @@ void ordenarPorNombre (char nombre[][20], char sexos[], int tam){
     char auxChar;
 
     for(int i=0 ; i<tam-1 ; i++){
-
         for(int j=i+1 ; j<tam ; j++){
-
             if(stricmp(nombre[i], nombre[j])==1){
-
                 strcpy(auxString[0], nombre[i]);
                 strcpy(nombre[i], nombre[j]);
                 strcpy(nombre[j], auxString[0]);
@@ -59,7 +54,6 @@ void ordenarPorNombre (char nombre[][20], char sexos[], int tam){
                 auxChar=sexos[i];
                 sexos[i]=sexos[j];
                 sexos[j]=auxChar;
-
                }
         }
     }
@@ -74,8 +68,7 @@ void ordenarPorNombreYSexo (char nombre[][20], char sexos[], int tam){
     for(int i=0 ; i<tam-1 ; i++){
         for(int j=i+1 ; j<tam ; j++){
 
-            if(sexos[i]==sexos[j]){
-                if(stricmp(nombre[i], nombre[j])==1){
+            if(sexos[i]>sexos[j]){
                 strcpy(auxString[0], nombre[i]);
                 strcpy(nombre[i], nombre[j]);
                 strcpy(nombre[j], auxString[0]);
@@ -84,9 +77,21 @@ void ordenarPorNombreYSexo (char nombre[][20], char sexos[], int tam){
                 sexos[i]=sexos[j];
                 sexos[j]=auxChar;
                }
+               else{
+                    if(sexos[i]==sexos[j] && (stricmp(nombre[i], nombre[j])==1)){                    {
+                        strcpy(auxString[0], nombre[i]);
+                        strcpy(nombre[i], nombre[j]);
+                        strcpy(nombre[j], auxString[0]);
+
+                        auxChar=sexos[i];
+                        sexos[i]=sexos[j];
+                        sexos[j]=auxChar;
+                    }
             }
         }
     }
 }
 
+
+}
 

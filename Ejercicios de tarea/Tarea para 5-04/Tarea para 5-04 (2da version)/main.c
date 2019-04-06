@@ -5,7 +5,7 @@ Crear una funcion que ordene de forma creciente o decreciente los nros de un vec
 Y otra que duplique los mismos.
 */
 void duplicarVector (int vector[], int tam);
-void conseguirEntero (int vector[], char *texto, int tam);
+void conseguirNotas (int notas[], char *texto, int tam);
 void mostrarDatos(char nomApe[][20], int legajos[], int notas[], int notas2[], float promedios[], char sexos[], int tam);
 int funcionMenu ();
 void ordenarEnteros(int vector[], int vector2[], int vector3[], int tam, int flag);
@@ -13,9 +13,9 @@ void ordenarFlotantes(float vector[], int vector2[], int vector3[], int vector4[
 void conseguirNomApe (char nomApe[][20], int tam);
 void calcularPromedios (float promedios[], int notas[], int notas2[], int tam);
 void conseguirSexos (char sexos[], int tam);
+void conseguirLegajos(int legajos[], int tam);
 //Flag 1 es creciente
 //Flag 0 es decreciente
-//Faltarian validaciones de legajos y notas..
 
 int main()
 {
@@ -23,9 +23,11 @@ int main()
     int legajos[5];
     int notas[5];
     int notas2[5];
-    int flag1=0;
-    int flag2=0;
-    int flag3=0;
+    int flag1=0;//Legajos
+    int flag2=0;//Notas
+    int flag3=0;//Notas2
+    int flag4=0;//Sexos
+    int flag5=0;//Nom y Ape
     int rta;
     char nomApe[5][20];
     char *texto[10]={"legajo"};
@@ -40,25 +42,52 @@ int main()
 
         switch(rta){
 
-        case 0:
+        case 1:
+            if(flag5==1){
+                puts("\nYa se han ingresado los sexos\n");
+                system("pause");
+                break;
+            }
+            flag5=1;
             conseguirNomApe(nomApe, 5);
             break;
-        case 100:
+        case 2:
+            if(flag4==1){
+                puts("\nYa se han ingresado los sexos\n");
+                system("pause");
+                break;
+            }
+            flag4=1;
             conseguirSexos(sexos, 5);
             break;
-        case 1:
-            flag1=1;
-            conseguirEntero(legajos, *texto, 5);
-            break;
-        case 2:
-            conseguirEntero(notas, *texto2, 5);
-            flag2=1;
-            break;
         case 3:
-            conseguirEntero(notas2, *texto3, 5);
-            flag3=1;
+            if(flag1==1){
+                puts("\nYa se han ingresado los legajos\n");
+                system("pause");
+                break;
+            }
+            flag1=1;
+            conseguirLegajos(legajos, 5);
             break;
         case 4:
+            if(flag2==1){
+                puts("\nYa se han ingresado las notas\n");
+                system("pause");
+                break;
+            }
+            conseguirNotas(notas, *texto2, 5);
+            flag2=1;
+            break;
+        case 5:
+            if(flag3==1){
+                puts("\nYa se han ingresado las notas 2\n");
+                system("pause");
+                break;
+            }
+            conseguirNotas(notas2, *texto3, 5);
+            flag3=1;
+            break;
+        case 6:
             if(flag1==1 && flag2==1 && flag3==1){
                 calcularPromedios(promedios, notas, notas2, 5);
                 mostrarDatos(nomApe, legajos, notas, notas2, promedios, sexos, 5);
@@ -68,7 +97,7 @@ int main()
             printf("\n\n");
             system("pause");
             break;
-        case 5:
+        case 7:
              if(flag1==1 && flag2==1 && flag3==1){
                 duplicarVector(legajos, 5);
                 duplicarVector(notas, 5);
@@ -80,28 +109,28 @@ int main()
             printf("\n\n");
             system("pause");
             break;
-        case 6://decreciente
+        case 8://decreciente
             ordenarEnteros(legajos, notas, notas2, 5, 0);
             break;
-        case 7:
+        case 9:
             ordenarEnteros(notas, legajos, notas2, 5, 0);
             break;
-        case 8:
+        case 10:
             ordenarEnteros(notas2, notas, legajos, 5, 0);
             break;
-        case 9:
+        case 11:
             ordenarFlotantes(promedios, notas2, notas, legajos, 5, 0);
             break;
-        case 10://creciente
+        case 12://creciente
             ordenarEnteros(legajos, notas, notas2, 5, 1);
             break;
-        case 11://creciente
+        case 13://creciente
            ordenarEnteros(notas, legajos, notas2, 5, 1);
            break;
-        case 12://creciente
+        case 14://creciente
            ordenarEnteros(notas2, legajos, notas, 5, 1);
            break;
-        case 13:
+        case 15:
             ordenarFlotantes(promedios, notas2, notas, legajos, 5, 1);
             break;
         default:
@@ -109,7 +138,7 @@ int main()
             break;
         }
 
-    }while(rta!=14);
+    }while(rta!=16);
 
     return 0;
 }
@@ -128,24 +157,24 @@ int funcionMenu(){
     int rta;
 
     printf("Opciones: ");
-    printf("\n\n\t0- Ingrese 5 nombres y apellidos");
-    printf("\n\n\t100- Ingrese 5 sexos");
-    printf("\n\t1- Ingrese 5 legajos");
-    printf("\n\t2- Ingrese 5 notas");
-    printf("\n\t3- Ingrese 5 notas 2");
-    printf("\n\n\t4- Mostrar datos ingresados y promedios");
-    printf("\n\t5- Duplicar los datos");
-    printf("\n\n\t6- Ordenarlos decreciente por legajo");//flag 0
-    printf("\n\t7- Ordenarlos decreciente por nota");//flag 0
-    printf("\n\t8- Ordenarlos decreciente por nota 2");//flag 0
-    printf("\n\t9- Ordenarlos decreciente por promedio");//flag 0
-    printf("\n\n\t10- Ordenarlos creciente por legajo");//flag 1
-    printf("\n\t11- Ordenarlos creciente por nota");//flag 1
-    printf("\n\t12- Ordenarlos creciente por nota 2");//flag 1
-    printf("\n\t13- Ordenarlos creciente por promedio");//flag 1
+    printf("\n\n\t1- Ingrese nombres y apellidos");
+    printf("\n\t2- Ingrese sexos");
+    printf("\n\t3- Ingrese legajos");
+    printf("\n\t4- Ingrese notas");
+    printf("\n\t5- Ingrese notas 2");
+    printf("\n\n\t6- Mostrar datos ingresados y promedios");
+    printf("\n\t7- Duplicar los datos");
+    printf("\n\n\t8- Ordenarlos decreciente por legajo");//flag 0
+    printf("\n\t9- Ordenarlos decreciente por nota");//flag 0
+    printf("\n\t10- Ordenarlos decreciente por nota 2");//flag 0
+    printf("\n\t11- Ordenarlos decreciente por promedio");//flag 0
+    printf("\n\n\t20- Ordenarlos creciente por legajo");//flag 1
+    printf("\n\t13- Ordenarlos creciente por nota");//flag 1
+    printf("\n\t14- Ordenarlos creciente por nota 2");//flag 1
+    printf("\n\t15- Ordenarlos creciente por promedio");//flag 1
 
 
-    printf("\n\n\t14- Salir");
+    printf("\n\n\t16- Salir");
     printf("\n\nElija una opcion: ");
     scanf("%d", &rta);
 
@@ -178,16 +207,33 @@ void conseguirSexos (char sexos[], int tam){
     }
 }
 
-void conseguirEntero (int enteros[], char *texto, int tam){
+void conseguirNotas (int notas[], char *texto, int tam){
 
-    int i;
-
-    for(i=0 ; i<tam ; i++){
+    for(int i=0 ; i<tam ; i++){
         system("cls");
         printf("Ingrese %s #%d: ", texto, i);
-        scanf("%d", &enteros[i]);
+        scanf("%d", &notas[i]);
+
+         while(notas[i]<1 || notas[i]>10){
+            printf("Ingrese %s #%d valido: ", texto, i);
+            scanf("%d", &notas[i]);
+        }
     }
 
+}
+
+void conseguirLegajos(int legajos[], int tam){
+
+    for(int i=0 ; i<tam ; i++){
+        system("cls");
+        printf("Ingrese legajo #%d: ", i);
+        scanf("%d", &legajos[i]);
+
+        while(legajos[i]<1000 || legajos[i]>9999){
+            printf("Ingrese legajo #%d valido: ", i);
+            scanf("%d", &legajos[i]);
+        }
+    }
 }
 
 void conseguirNomApe(char nomApe[][20], int tam){
@@ -321,6 +367,5 @@ void ordenarPorNombre (char nomApe[][20], char sexos[], int legajos[], int notas
 
 }
 
-void ordenar
 
 
