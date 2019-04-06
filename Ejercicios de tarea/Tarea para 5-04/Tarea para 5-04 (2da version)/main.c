@@ -297,7 +297,7 @@ void ordenarEnteros(int vector[], int vector2[], int vector3[], float promedios[
 
                     strcpy(auxString, nomApe[i]);
                     strcpy(nomApe[i], nomApe[j]);
-                    strcpy(nomApe[j], nomApe[i]);
+                    strcpy(nomApe[j], auxString);
 
                 }
             }else{
@@ -327,7 +327,7 @@ void ordenarEnteros(int vector[], int vector2[], int vector3[], float promedios[
 
                     strcpy(auxString, nomApe[i]);
                     strcpy(nomApe[i], nomApe[j]);
-                    strcpy(nomApe[j], nomApe[i]);
+                    strcpy(nomApe[j], auxString);
             }
         }
     }
@@ -348,7 +348,7 @@ void ordenarFlotantes(float promedios[], int vector[], int vector2[], int vector
 
             if(flag==1){//Creciente
 
-                if(vector[j]<vector[i]){
+                if(promedios[j]<promedios[i]){
 
                      auxInt=vector[i];
                     vector[i]=vector[j];
@@ -372,12 +372,12 @@ void ordenarFlotantes(float promedios[], int vector[], int vector2[], int vector
 
                     strcpy(auxString, nomApe[i]);
                     strcpy(nomApe[i], nomApe[j]);
-                    strcpy(nomApe[j], nomApe[i]);
+                    strcpy(nomApe[j], auxString);
                 }
             }else{
 
                 //if(flag==0) decreciente
-                if(vector[j]>vector[i]){
+                if(promedios[j]>promedios[i]){
 
                      auxInt=vector[i];
                     vector[i]=vector[j];
@@ -401,7 +401,7 @@ void ordenarFlotantes(float promedios[], int vector[], int vector2[], int vector
 
                     strcpy(auxString, nomApe[i]);
                     strcpy(nomApe[i], nomApe[j]);
-                    strcpy(nomApe[j], nomApe[i]);
+                    strcpy(nomApe[j], auxString);
             }
         }
     }
