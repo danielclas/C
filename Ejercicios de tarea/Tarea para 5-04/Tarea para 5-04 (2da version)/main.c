@@ -6,11 +6,13 @@ Y otra que duplique los mismos.
 */
 void duplicarVector (int vector[], int tam);
 void conseguirEntero (int vector[], char *texto, int tam);
-void mostrarDatos(int legajos[], int notas[], int notas2[], float promedios[], int tam);
+void mostrarDatos(char nomApe[][20], int legajos[], int notas[], int notas2[], float promedios[], char sexos[], int tam);
 int funcionMenu ();
 void ordenarEnteros(int vector[], int vector2[], int vector3[], int tam, int flag);
 void ordenarFlotantes(float vector[], int vector2[], int vector3[], int vector4[], int tam, int flag);
 void conseguirNomApe (char nomApe[][20], int tam);
+void calcularPromedios (float promedios[], int notas[], int notas2[], int tam);
+void conseguirSexos (char sexos[], int tam);
 //Flag 1 es creciente
 //Flag 0 es decreciente
 //Faltarian validaciones de legajos y notas..
@@ -29,6 +31,7 @@ int main()
     char *texto[10]={"legajo"};
     char *texto2[10]={"nota"};
     char *texto3[10]={"nota 2"};
+    char sexos[5];
     float promedios[5];
 
     do{
@@ -39,6 +42,9 @@ int main()
 
         case 0:
             conseguirNomApe(nomApe, 5);
+            break;
+        case 100:
+            conseguirSexos(sexos, 5);
             break;
         case 1:
             flag1=1;
@@ -54,10 +60,8 @@ int main()
             break;
         case 4:
             if(flag1==1 && flag2==1 && flag3==1){
-                for(int i=0 ; i<5 ; i++){
-                    promedios[i]=(float)(notas[i]+notas2[i])/2;
-                }
-                mostrarDatos(legajos, notas, notas2, promedios, 5);
+                calcularPromedios(promedios, notas, notas2, 5);
+                mostrarDatos(nomApe, legajos, notas, notas2, promedios, sexos, 5);
             }else{
                 puts("Debe ingresar todos los datos antes de poder mostrarlos");
             }
@@ -69,7 +73,7 @@ int main()
                 duplicarVector(legajos, 5);
                 duplicarVector(notas, 5);
                 duplicarVector(notas2, 5);
-                mostrarDatos(legajos, notas, notas2, promedios, 5);
+                mostrarDatos(nomApe, legajos, notas, notas2, promedios, sexos, 5);
             }else{
                 puts("Debe ingresar todos los datos antes de poder duplicarlos y mostrarlos");
             }
@@ -125,6 +129,7 @@ int funcionMenu(){
 
     printf("Opciones: ");
     printf("\n\n\t0- Ingrese 5 nombres y apellidos");
+    printf("\n\n\t100- Ingrese 5 sexos");
     printf("\n\t1- Ingrese 5 legajos");
     printf("\n\t2- Ingrese 5 notas");
     printf("\n\t3- Ingrese 5 notas 2");
@@ -147,6 +152,32 @@ int funcionMenu(){
     return rta;
 }
 
+void calcularPromedios (float promedios[], int notas[], int notas2[], int tam){
+
+    for(int i=0; i<tam ; i++){
+        promedios[i]=(float)(notas[i]+notas2[i])/2;
+    }
+
+}
+
+void conseguirSexos (char sexos[], int tam){
+
+    for(int i=0 ; i<tam ; i++){
+        system("cls");
+        printf("Ingrese sexo #%d: ", i);
+        fflush(stdin);
+        sexos[i]=getchar();
+        sexos[i]=tolower(sexos[i]);
+
+        while(sexos[i]!='f' && sexos[i]!='m'){
+            printf("Ingrese sexo #%d valido:", i);
+            fflush(stdin);
+            sexos[i]=getchar();
+            sexos[i]=tolower(sexos[i]);
+        }
+    }
+}
+
 void conseguirEntero (int enteros[], char *texto, int tam){
 
     int i;
@@ -162,26 +193,19 @@ void conseguirEntero (int enteros[], char *texto, int tam){
 void conseguirNomApe(char nomApe[][20], int tam){
 
     for(int i=0 ; i<5 ; i++){
-        printf("Ingrese nombre y apellido #%d: ", i);
-        //fflush(stdin);
-        scanf("%s", nomApe[i]);
         system("cls");
+        printf("Ingrese nombre y apellido #%d: ", i);
+        fflush(stdin);
+        gets(nomApe[i]);
     }
 
 
 }
-void mostrarDatos(int legajos[], int notas[], int notas2[], float promedios[], int tam){
+void mostrarDatos(char nomApe[][20], int legajos[], int notas[], int notas2[], float promedios[], char sexos[], int tam){
 
-    int i;
-
-    /*for(i=0 ; i<tam ; i++){
-
-        printf("\n\t%s %d: %d", texto, i, enteros[i]);
-    }*/
-
-    printf("\n\tLegajos\tNotas\tNotas2\tPromedios");
+    printf("\n\tSex\tNom y ape\tLegajos\tNotas\tNotas2\tProm");
     for(int i=0 ; i<tam ; i++){
-        printf("\n\t%d\t%d\t%d\t%.2f", legajos[i], notas[i], notas2[i], promedios[i]);
+        printf("\n\t%c\t%s\t%d\t%d\t%d\t%.2f", sexos[i], nomApe[i], legajos[i], notas[i], notas2[i], promedios[i]);
     }
 }
 
@@ -287,5 +311,16 @@ void ordenarFlotantes(float vector[], int vector2[], int vector3[], int vector4[
 
 }
 }
+
+void ordenarPorNombre (char nomApe[][20], char sexos[], int legajos[], int notas[], int notas2[], float promedios[], int tam){
+
+
+
+
+
+
+}
+
+void ordenar
 
 

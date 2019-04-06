@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1554577467 source:c:\users\dani\desktop\new folder\laboratorio-1\practica guia de ejercicios\ordenar por nombre y sexo\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
