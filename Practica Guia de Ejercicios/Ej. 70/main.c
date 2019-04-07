@@ -17,7 +17,7 @@ int main()
         }
     }
 
-    printf("#0\t#1\t#2\t#3\t#4\t");
+    printf("\t#0\t#1\t#2\t#3\t#4\t");
     for(int i=0 ; i<6 ; i++){
             printf("\n");
         for(int j=0 ; j<5 ; j++){
