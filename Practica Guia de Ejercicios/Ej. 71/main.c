@@ -9,6 +9,8 @@ Se pide informar por pantalla:
 La recaudación total por línea de colectivo,
 La recaudación total por coche,
 La recaudación total general*/
+
+//Pregunta: Como hago para el programa detecte un elemento como 0 si no ingrese ningun dato?
 int main()
 {
 
@@ -52,7 +54,7 @@ int main()
     for(i=0 ; i<3 ; i++){
           recLinea=0;
           for(j=0 ; j<11 ; j++){
-             if(coches[i][j]!=NULL){
+             if(coches[i][j]){
                 recLinea+=coches[i][j];
              }
           }
