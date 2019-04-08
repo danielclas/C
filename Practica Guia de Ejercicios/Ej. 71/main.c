@@ -14,8 +14,8 @@ La recaudación total general*/
 int main()
 {
 
-    int coches[2][11];
-    int recLinea;
+    int coches[2][11]={{0}};
+    int recLinea[]={0,0,0};
     int recCoche=0;
     int recTotal=0;
     char rta;
@@ -42,6 +42,8 @@ int main()
         printf("Ingrese recaudacion: ");
         scanf("%d", &coches[i][j]);
 
+        recLinea[i]+=coches[i][j];
+
         printf("Para seguir presione s");
         rta=getche();
         rta=tolower(rta);
@@ -50,16 +52,19 @@ int main()
 
     }while(rta=='s');
 
-    printf("Recaudacion total por linea de colectivo: ");
+    printf("Recaudacion por linea: \n");
     for(i=0 ; i<3 ; i++){
-          recLinea=0;
-          for(j=0 ; j<11 ; j++){
-             if(coches[i][j]){
-                recLinea+=coches[i][j];
-             }
-          }
-          printf("\nLinea #%d: $%d", i, recLinea);
+        printf("\n\tLinea #%d: $%d", i, recLinea[i]);
     }
+
+    printf("\n\nRecaudacion por coche: \n");
+    for(i=0 ; i<3 ; i++){
+          for(j=0 ; j<12 ; j++){
+            printf("\n\tLinea #%d Coche #%d: $%d", i, j, recLinea);
+          }
+    }
+
+    printf("\n\nRecaudacion total: %d", recLinea[0]+recLinea[1]+recLinea[2]);
 
 
 
