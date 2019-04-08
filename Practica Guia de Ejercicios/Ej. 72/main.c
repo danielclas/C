@@ -25,6 +25,7 @@ int main()
 {
 
     float trans[4][101]={{0}};
+    float transAux=0;
     int rta, i, j;
 
     do{
@@ -38,17 +39,18 @@ int main()
             scanf("%d", &j);
             i=menuTransacciones();
             printf("Ingrese el monto de la transaccion :");
-            scanf("%.2f", &trans[i][j]);
+            scanf("%.2f", &transAux);
+            trans[i][j]+=transAux;
             system("cls");
             break;
         case 2:
             printf("Ingrese el nro de cliente para averiguar transacciones: ");
             scanf("%d", &j);
             recorrerTransacciones(trans, j);
+            system("pause");
             break;
         case 3:
-            printf("El programa ha finalizado");
-            system("pause");
+            printf("\n\nEl programa ha finalizado\n\n");
             break;
         default:
             system("cls");
