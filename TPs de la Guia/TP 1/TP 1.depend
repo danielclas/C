@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1554839051 source:c:\users\dani\desktop\new folder\laboratorio-1\tps de la guia\tp 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+
