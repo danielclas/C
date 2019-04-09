@@ -14,7 +14,7 @@ La recaudación total general*/
 int main()
 {
 
-    int coches[2][11]={ {0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0}};
+    int coches[3][11]={ {0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0}};
     int recLinea=0;
     int recCoche=0;
     int recTotal=0;
@@ -54,7 +54,7 @@ int main()
     }while(rta=='s');
 
     printf("Recaudacion por linea: \n");
-    for(i=0 ; i<2 ; i++){
+    for(i=0 ; i<3 ; i++){
             recLinea=0;
         for(int j=0 ; j<11 ; j++){
             recLinea+=coches[i][j];
