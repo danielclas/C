@@ -24,7 +24,7 @@ float averiguarSaldo (float trans[][101], int j);
 int main()
 {
 
-    float trans[4][101]={{0}};
+    float trans[6][101]={{0}};
     float transAux=0;
     int rta, i, j;
 
@@ -39,7 +39,7 @@ int main()
             scanf("%d", &j);
             i=menuTransacciones();
             printf("Ingrese el monto de la transaccion :");
-            scanf("%.2f", &transAux);
+            scanf("%f", &transAux);
             trans[i][j]+=transAux;
             system("cls");
             break;

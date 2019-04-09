@@ -78,7 +78,7 @@ void ordenarPorNombreYSexo (char nombre[][20], char sexos[], int tam){
                 sexos[j]=auxChar;
                }
                else{
-                    if(sexos[i]==sexos[j] && (stricmp(nombre[i], nombre[j])==1)){                    {
+                    if(sexos[i]==sexos[j] && (stricmp(nombre[i], nombre[j])==-1)){                    {
                         strcpy(auxString[0], nombre[i]);
                         strcpy(nombre[i], nombre[j]);
                         strcpy(nombre[j], auxString[0]);

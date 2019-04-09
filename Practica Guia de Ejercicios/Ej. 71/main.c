@@ -14,8 +14,8 @@ La recaudación total general*/
 int main()
 {
 
-    int coches[2][11]={{0}};
-    int recLinea[]={0,0,0};
+    int coches[2][11]={ {0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0}};
+    int recLinea=0;
     int recCoche=0;
     int recTotal=0;
     char rta;
@@ -39,10 +39,11 @@ int main()
             scanf("%d", &j);
         }
 
+            printf("%d %d", i, j);
         printf("Ingrese recaudacion: ");
         scanf("%d", &coches[i][j]);
 
-        recLinea[i]+=coches[i][j];
+        //recLinea[i]+=coches[i][j];
 
         printf("Para seguir presione s");
         rta=getche();
@@ -53,18 +54,21 @@ int main()
     }while(rta=='s');
 
     printf("Recaudacion por linea: \n");
-    for(i=0 ; i<3 ; i++){
-        printf("\n\tLinea #%d: $%d", i, recLinea[i]);
+    for(i=0 ; i<2 ; i++){
+            recLinea=0;
+        for(int j=0 ; j<11 ; j++){
+            recLinea+=coches[i][j];
+        }
+        printf("Rec linea %d: ", i, recLinea);
     }
-
     printf("\n\nRecaudacion por coche: \n");
-    for(i=0 ; i<3 ; i++){
-          for(j=0 ; j<12 ; j++){
-            printf("\n\tLinea #%d Coche #%d: $%d", i, j, recLinea);
+    for(i=0 ; i<2 ; i++){
+          for(j=0 ; j<11 ; j++){
+            printf("\n\tLinea #%d Coche #%d: $%d", i, j,coches[i][j]);
           }
     }
 
-    printf("\n\nRecaudacion total: %d", recLinea[0]+recLinea[1]+recLinea[2]);
+//    printf("\n\nRecaudacion total: %d", recLinea[0]+recLinea[1]+recLinea[2]);
 
 
 
