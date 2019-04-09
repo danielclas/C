@@ -11,26 +11,68 @@ No se sabe la cantidad de alumnos a ingresar, por ello se deberá mostrar en pant
 Para resolver el problema usar alguna de las funciones desarrolladas en problemas anteriores.
 (La consigna original es 30 pero cambio a 5 notas en total )
 */
+void obtenerNotasYNombre(char nomApe[][20], float promedios[], int index);
+void calcularPromedios (float sumaNotas, float promedios[], int index);
+void mostrarPromedios(char nomApe[][20], float promedios[], int index);
 
 int main(){
 
-    int notas[TAM];
-    char nomApe[50][20];
-    char promedios[50];
     char rta;
+    char nomApe[50][20];
+    float promedios[50];
+    int index=0;
 
     do{
+        obtenerNotasYNombre(nomApe, promedios, index);
 
+        index++;
 
-        printf("Presione S para continuar o N para salir");
+        printf("\nPresione S para continuar o N para salir");
         rta=getche();
         rta=tolower(rta);
 
     }while(rta!='n');
 
+    mostrarPromedios(nomApe, promedios, index);
+
     return 0;
+}
 
+void obtenerNotasYNombre(char nomApe[][20], float promedios[], int index){
 
+    char materias[TAM][20]={{"Matematica"},{"Ingles"},{"Fisica"},{"Lengua"},{"Quimica"}};
+    float sumaNotas, auxNotas;
 
+    sumaNotas=0;
+    system("cls");
+    printf("Ingrese el apellido del alumno: ");
+    fflush(stdin);
+    gets(nomApe[index]);
+
+    for(int i=0 ; i<TAM ; i++){
+        printf("\n\tNota de %s: ", materias[i]);
+        scanf("%f", &auxNotas);
+        sumaNotas+=auxNotas;
+    }
+
+    calcularPromedios(sumaNotas, promedios, index);
+}
+
+void calcularPromedios(float sumaNotas, float promedios[], int index){
+
+    float promedio=sumaNotas/TAM;
+    promedios[index]=promedio;
+
+}
+
+void mostrarPromedios(char nomApe[][20], float promedios[], int index){
+
+    system("cls");
+    printf("\tApellido\tPromedio");
+
+    for(int i=index-1 ; i>-1 ; i--){
+
+        printf("\n\t%s\t%.2f", nomApe[i], promedios[i]);
+    }
 
 }
