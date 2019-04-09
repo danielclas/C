@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <conio.h>
+#include <string.h>
 #define TAM 5
 /*7- Realizar un programa que permita calcular el promedio
 de las 5 notas de un alumno

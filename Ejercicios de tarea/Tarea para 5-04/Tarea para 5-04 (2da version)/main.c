@@ -173,7 +173,7 @@ int funcionMenu(){
     printf("\n\t9- Ordenarlos decreciente por nota");//flag 0
     printf("\n\t10- Ordenarlos decreciente por nota 2");//flag 0
     printf("\n\t11- Ordenarlos decreciente por promedio");//flag 0
-    printf("\n\n\t20- Ordenarlos creciente por legajo");//flag 1
+    printf("\n\n\t12- Ordenarlos creciente por legajo");//flag 1
     printf("\n\t13- Ordenarlos creciente por nota");//flag 1
     printf("\n\t14- Ordenarlos creciente por nota 2");//flag 1
     printf("\n\t15- Ordenarlos creciente por promedio");//flag 1
