@@ -60,7 +60,7 @@ void mostrarAprobados (char nomApe[][20], int notas[], int tam){
 
     for(i=0 ; i<tam ; i++){
         if(notas[i]>=7){
-                printf("%s aprobo con %d", nomApe[i], notas[i]);
+                printf("\n%s aprobo con %d", nomApe[i], notas[i]);
         }
     }
 
