@@ -9,6 +9,7 @@ y los Km. recorridos en toda una jornada de trabajo
 
 */
 //Utilizo 10 micros en total para probar
+
 void cargarMicros (float micros[][10]);
 void mostrarMicros (float micros[][10], int tam);
 float sumarKMs (float micros[][10], int tam);
@@ -26,6 +27,7 @@ int main()
 
     kmTotales=sumarKMs(micros, 10);
     printf("KM recorridos en total: %.2f", kmTotales);
+    mostrarMicros(micros, 10);
 
 
     return 0;
@@ -38,8 +40,8 @@ void cargarMicros (float micros[][10]){
     printf("Nro de micro (1 a 10): ");
     scanf("%d", &auxIndex);
 
-    while(auxIndex<1 || auxIndex>10){
-        printf("Error. Nro. de micro (1 a 10): ");
+    while((auxIndex<1 || auxIndex>10) || (micros[0][auxIndex-1]!=0)){
+        printf("Error. Nro. de micro ya ocupado o invalido (1 a 10): ");
         scanf("%d", &auxIndex);
     }
 
