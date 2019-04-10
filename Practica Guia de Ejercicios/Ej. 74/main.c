@@ -60,6 +60,7 @@ void cargarMicros (float micros[][10]){
 void mostrarMicros(float micros[][10], int tam){
 
     for(int i=0 ; i<tam ; i++){
+        printf("\n\n");
         printf("Micro #%d: ", i+1);
         printf("\tRecaudacion: $%.2f\tKMs recorridos: %.2f", micros[0][i], micros[1][i]);
     }
