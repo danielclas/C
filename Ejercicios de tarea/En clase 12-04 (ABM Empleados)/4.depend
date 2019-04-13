@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1555106741 source:c:\users\alumno\desktop\4\en clase 12\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1555176485 source:c:\users\dani\desktop\en clase 12-04-20190413t153813z-001\en clase 12-04\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+	<string.h>
+
