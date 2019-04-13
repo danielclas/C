@@ -87,29 +87,33 @@ void modificarEmpleado(eEmpleado vec[], int tam){
         printf("\nNo existe ninguna empleado con ese legajo\n");
         system("pause");
     }else{
-        printf("Empleado seleccionado legajo %d", legajoModificar);
-        mostrarEmpleado(vec[indexBuscar]);
 
         do{
-            printf("Ingrese el dato a modificar: ");
-            printf("\n\t1-Nombre\n\t2-Sueldo\n\t3-Sexo\n\t4- Terminar modificacion");
+            system("cls");
+            printf("\nEmpleado seleccionado legajo %d", legajoModificar);
+            mostrarEmpleado(vec[indexBuscar]);
+            printf("\n\nIngrese el dato a modificar: ");
+            printf("\n\n\t1-Nombre\n\t2-Sueldo\n\t3-Sexo\n\t4- Terminar modificacion");
+            printf("\n\nOpcion: ");
             scanf("%d", &campoModificar);
 
             switch(campoModificar){
                 case 1:
-                    printf("Ingrese nuevo nombre: ");
+                    printf("\n\tIngrese nuevo nombre: ");
+                    fflush(stdin);
                     gets(vec[indexBuscar].nombre);
                     break;
                 case 2:
-                    printf("Ingrese nuevo sueldo: ");
+                    printf("\n\tIngrese nuevo sueldo: ");
                     scanf("%f", &vec[indexBuscar].sueldo);
                     break;
                 case 3:
-                    printf("Ingrese nuevo sexo: ");
+                    printf("\n\tIngrese nuevo sexo: ");
+                    fflush(stdin);
                     vec[indexBuscar].sexo=tolower(getchar());
                     break;
                 case 4:
-                    printf("Modificacion terminada");
+                    printf("\n\tModificacion terminada\n");
                     system("pause");
                     break;
                 default:
@@ -119,12 +123,7 @@ void modificarEmpleado(eEmpleado vec[], int tam){
 
         }while(campoModificar!=4);
 
-        printf("Empleado seleccionado legajo %d", legajoModificar);
-        mostrarEmpleado(vec[indexBuscar]);
-        system("pause");
-
-    }
-
+        }
 }
 
 void bajaEmpleado(eEmpleado vec[], int tam){
@@ -285,7 +284,8 @@ void agregarEmpleado(eEmpleado vec[], int tam){
     int indexMostrar;
 
     if(buscarLibre(vec, TAM)==-1){
-        printf("\nNo hay lugares libres");
+        printf("\nNo hay lugares libres\n");
+        system("pause");
     }else{
         indexLibre=buscarLibre(vec, TAM);
         printf("\nIngrese el legajo: ");
