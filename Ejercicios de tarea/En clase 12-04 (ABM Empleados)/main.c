@@ -78,13 +78,13 @@ void modificarEmpleado(eEmpleado vec[], int tam){
     int indexBuscar;
     int campoModificar;
 
-    printf("Ingrese el legajo del empleado a modificar: ");
+    printf("\n\nIngrese el legajo del empleado a modificar: ");
     scanf("%d", &legajoModificar);
 
     indexBuscar=buscarEmpleado(vec, TAM, legajoModificar);
 
     if(indexBuscar==-1){
-        printf("No existe ninguna empleado con ese legajo");
+        printf("\nNo existe ninguna empleado con ese legajo\n");
         system("pause");
     }else{
         printf("Empleado seleccionado legajo %d", legajoModificar);
@@ -133,26 +133,28 @@ void bajaEmpleado(eEmpleado vec[], int tam){
     int indexBuscar;
     char confirmoBaja;
 
-    printf("Ingrese el legajo a dar de baja: ");
+    printf("\nIngrese el legajo a dar de baja: ");
     scanf("%d", &legajoBaja);
 
     indexBuscar=buscarEmpleado(vec, TAM, legajoBaja);
 
     if(indexBuscar==-1){
-            printf("No existe ningun empleado con ese legajo\n");
+            printf("\nNo existe ningun empleado con ese legajo\n");
             system("pause");
     }else{
-        printf("Empleado con legajo %d: ", legajoBaja);
+        printf("\nEmpleado con legajo %d: ", legajoBaja);
         mostrarEmpleado(vec[indexBuscar]);
 
-        printf("Confirmar la baja de este empleado? S/N");
+        printf("\n\nConfirmar la baja de este empleado? S/N: ");
         fflush(stdin);
         confirmoBaja=tolower(getchar());
 
         if(confirmoBaja=='n'){
-            printf("Baja de empleado cancelada\n");
+            printf("\nBaja de empleado cancelada\n");
             system("pause");
         }else{
+            printf("\nBaja de empleado confirmada\n");
+            system("pause");
             vec[indexBuscar].ocupado=0;
         }
 
@@ -167,11 +169,13 @@ void ordenarEmpleados(eEmpleado vec[], int tam){
     int parametro;
     int orden;
 
-    printf("Elija un parametro por el cual ordenar: ");
-    printf("\n\t1- Legajo\n\t2- Sexo\n\t3- Sueldo\n\t4- Nombre");
+    printf("\nElija un parametro por el cual ordenar: ");
+    printf("\n\n\t1- Legajo\n\t2- Sexo\n\t3- Sueldo\n\t4- Nombre");
+    printf("\n\n\tOpcion: ");
     scanf("%d", &parametro);
-    printf("Elija el orden: ");
+    printf("\nElija el orden: ");
     printf("\n\t1- Creciente\n\t2- Decreciente");
+    printf("\n\n\tOpcion: ");
     scanf("%d", &orden);
 
     ordenarParametro(vec, TAM, parametro, orden);
@@ -304,9 +308,10 @@ void agregarEmpleado(eEmpleado vec[], int tam){
             system("pause");
         }else{
     ///Si es diferente a -1, entonces existe, y el valor devuelto sera el indice con el que muestro
-            printf("\nYa hay un empleado con ese legajo");
+            printf("\nYa hay un empleado con ese legajo\n");
             indexMostrar=buscarEmpleado(vec, TAM, legajo);
             mostrarEmpleado(vec[indexMostrar]);
+            printf("\n\n");
             system("pause");
         }
       }
@@ -377,18 +382,26 @@ int buscarEmpleado(eEmpleado vec[], int tam, int legajoABuscar){
 
 void mostrarEmpleado(eEmpleado emp){
 
-        printf("\n\tLegajo: %d\tNombre: %s\tSueldo: %.2f\tSexo: %c", emp.legajo, emp.nombre, emp.sueldo, emp.sexo);
+        printf("\n\n\tLegajo: %d\tNombre: %s\tSueldo: %.2f\tSexo: %c", emp.legajo, emp.nombre, emp.sueldo, emp.sexo);
 
 
 }
 
 void mostrarEmpleados(eEmpleado vec[], int tam){
 
+    int flagMostrar=0;
+
         for(int i=0 ; i<tam ; i++){
             if(vec[i].ocupado==1){
               mostrarEmpleado(vec[i]);
+              flagMostrar=1;
             }
         }
+
+        if(flagMostrar==0){
+            printf("\nAun no se han ingresado empleados\n");
+        }
+        printf("\n\n");
         system("pause");
 }
 
