@@ -63,11 +63,8 @@ int main()
             break;
         default:
                 system("cls");
-
         }
-
     }while(rta!=6);
-
 
         return 0;
 }
@@ -269,13 +266,9 @@ for(int i=0 ; i<tam-1 ; i++){
             break;
 
         }
+
         }
 }
-
-
-
-
-
 }
 void agregarEmpleado(eEmpleado vec[], int tam){
 
@@ -317,11 +310,6 @@ void agregarEmpleado(eEmpleado vec[], int tam){
       }
 
 }
-
-
-
-
-
 
 int menuOpcion(){
 
@@ -383,7 +371,6 @@ int buscarEmpleado(eEmpleado vec[], int tam, int legajoABuscar){
 void mostrarEmpleado(eEmpleado emp){
 
         printf("\n\n\tLegajo: %d\tNombre: %s\tSueldo: %.2f\tSexo: %c", emp.legajo, emp.nombre, emp.sueldo, emp.sexo);
-
 
 }
 
