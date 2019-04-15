@@ -8,13 +8,24 @@
 
 typedef struct{
 
+    int dia;
+    int mes;
+    int anno;
+
+}eFecha;
+
+typedef struct{
+
     int legajo;
     char nombre[20];
     char sexo;
     float sueldo;
+    eFecha ingreso;
     int ocupado;
 
 }eEmpleado;
+
+///FALTAN VALIDACIONES!!
 
 int inicializarEmpleados (eEmpleado vec[], int tam);
 int buscarLibre (eEmpleado vec[], int tam);
@@ -90,7 +101,7 @@ void modificarEmpleado(eEmpleado vec[], int tam){
             printf("\nEmpleado seleccionado legajo %d", legajoModificar);
             mostrarEmpleado(vec[indexBuscar]);
             printf("\n\nIngrese el dato a modificar: ");
-            printf("\n\n\t1-Nombre\n\t2-Sueldo\n\t3-Sexo\n\t4- Terminar modificacion");
+            printf("\n\n\t1-Nombre\n\t2-Sueldo\n\t3-Sexo\n\t4-Fecha de Ingreso\n\t5- Terminar modificacion");
             printf("\n\nOpcion: ");
             scanf("%d", &campoModificar);
 
@@ -110,6 +121,15 @@ void modificarEmpleado(eEmpleado vec[], int tam){
                     vec[indexBuscar].sexo=tolower(getchar());
                     break;
                 case 4:
+                    printf("\n\tIngrese nueva fecha de ingreso: ");
+                    printf("\n\tDia: ");
+                    scanf("%d", &vec[indexBuscar].ingreso.dia);
+                    printf("\tMes: ");
+                    scanf("%d", &vec[indexBuscar].ingreso.mes);
+                    printf("\tAño: ");
+                    scanf("%d", &vec[indexBuscar].ingreso.anno);
+                    break;
+                case 5:
                     printf("\n\tModificacion terminada\n");
                     system("pause");
                     break;
@@ -118,7 +138,7 @@ void modificarEmpleado(eEmpleado vec[], int tam){
                     break;
             }
 
-        }while(campoModificar!=4);
+        }while(campoModificar!=5);
 
         }
 }
@@ -166,7 +186,7 @@ void ordenarEmpleados(eEmpleado vec[], int tam){
     int orden;
 
     printf("\nElija un parametro por el cual ordenar: ");
-    printf("\n\n\t1- Legajo\n\t2- Sexo\n\t3- Sueldo\n\t4- Nombre");
+    printf("\n\n\t1- Legajo\n\t2- Sexo\n\t3- Sueldo\n\t4- Nombre\n\t5- Fecha de Ingreso");
     printf("\n\n\tOpcion: ");
     scanf("%d", &parametro);
     printf("\nElija el orden: ");
@@ -264,7 +284,49 @@ for(int i=0 ; i<tam-1 ; i++){
                 }
             }
             break;
-
+        case 5:
+            switch(orden){
+            case 1:
+                if(vec[i].ingreso.anno>vec[j].ingreso.anno){
+                    ///Ingreso creciente
+                    auxEmp=vec[i];
+                    vec[i]=vec[j];
+                    vec[j]=auxEmp;
+                }else{
+                    if(vec[i].ingreso.anno==vec[j].ingreso.anno && vec[i].ingreso.mes>vec[j].ingreso.mes){
+                        auxEmp=vec[i];
+                        vec[i]=vec[j];
+                        vec[j]=auxEmp;
+                    }else{
+                        if(vec[i].ingreso.anno==vec[j].ingreso.anno && vec[i].ingreso.mes==vec[j].ingreso.mes && vec[i].ingreso.dia>vec[j].ingreso.dia){
+                           auxEmp=vec[i];
+                            vec[i]=vec[j];
+                            vec[j]=auxEmp;
+                        }
+                    }
+                }
+            break;
+            case 2:
+                if(vec[i].ingreso.anno<vec[j].ingreso.anno){
+                    ///Ingreso creciente
+                    auxEmp=vec[i];
+                    vec[i]=vec[j];
+                    vec[j]=auxEmp;
+                }else{
+                    if(vec[i].ingreso.anno==vec[j].ingreso.anno && vec[i].ingreso.mes<vec[j].ingreso.mes){
+                        auxEmp=vec[i];
+                        vec[i]=vec[j];
+                        vec[j]=auxEmp;
+                    }else{
+                        if(vec[i].ingreso.anno==vec[j].ingreso.anno && vec[i].ingreso.mes==vec[j].ingreso.mes && vec[i].ingreso.dia<vec[j].ingreso.dia){
+                           auxEmp=vec[i];
+                            vec[i]=vec[j];
+                            vec[j]=auxEmp;
+                        }
+                    }
+                }
+            break;
+            }
         }
 
         }
@@ -297,6 +359,13 @@ void agregarEmpleado(eEmpleado vec[], int tam){
             printf("Sexo: ");
             fflush(stdin);
             vec[indexLibre].sexo=getchar();
+            printf("Fecha de ingreso: ");
+            printf("\n\tDia: ");
+            scanf("%d", &vec[indexLibre].ingreso.dia);
+            printf("\tMes: ");
+            scanf("%d", &vec[indexLibre].ingreso.mes);
+            printf("\tAño: ");
+            scanf("%d", &vec[indexLibre].ingreso.anno);
             printf("\nEl empleado ha sido registrado por exito\n");
             system("pause");
         }else{
@@ -371,6 +440,7 @@ int buscarEmpleado(eEmpleado vec[], int tam, int legajoABuscar){
 void mostrarEmpleado(eEmpleado emp){
 
         printf("\n\n\tLegajo: %d\tNombre: %s\tSueldo: %.2f\tSexo: %c", emp.legajo, emp.nombre, emp.sueldo, emp.sexo);
+        printf("\n\tIngreso: %02d/%02d/%d", emp.ingreso.dia, emp.ingreso.mes, emp.ingreso.anno);
 
 }
 
