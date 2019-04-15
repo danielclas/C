@@ -45,7 +45,7 @@ int main()
 
     obtenerDatos(obreros, TAM);
     calcularNetoYDescuentos(obreros, TAM);
-
+    obtenerYMostrarMaximo(obreros, TAM);
     mostrarDatos(obreros, TAM);
 
     return 0;
@@ -66,7 +66,6 @@ void obtenerDatos(eEmpleado obreros[], int tam){
             system("cls");
     }
 
-    obtenerYMostrarMaximo(obreros, TAM);
 }
 
 void calcularNetoYDescuentos(eEmpleado obreros[], int tam){
