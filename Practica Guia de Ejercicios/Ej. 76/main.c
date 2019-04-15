@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TAM 5
+#define TAM 2
 
 /**76. Una empresa comercializa 5 artículos en 3 sucursales.
 Se debe realizar un programa que presente un menú con las siguientes opciones :
@@ -71,23 +71,24 @@ void cargarDatos(articulos lista[], int tam){
 
     int sucursalAux;
 
+    printf("Carga de datos");
     for(int i=0 ; i<tam ; i++){
 
         system("cls");
-        printf("Ingrese N° de sucursal: ");
+        printf("\n\tIngrese N° de sucursal: ");
         scanf("%d", &sucursalAux);
 
         while(sucursalAux<1 || sucursalAux>3){
-        printf("Ingrese N° de sucursal valida: ");
+        printf("\n\tIngrese N° de sucursal valida: ");
         scanf("%d", &sucursalAux);
         }
 
         lista[i].sucursal=sucursalAux;
 
-        printf("Ingrese N° de articulo: ");
+        printf("\n\tIngrese N° de articulo: ");
         scanf("%d", &lista[i].nroArticulo);
 
-        printf("Ingrese cantidad: ");
+        printf("\n\tIngrese cantidad: ");
         scanf("%d", &lista[i].cantidad);
     }
 }
@@ -101,7 +102,7 @@ int menuOpcion(){
     printf("\n\t2- Venta de articulos");
     printf("\n\t3- Existencia de mercaderias");
     printf("\n\t4- Salir");
-    printf("\nOpcion: ");
+    printf("\n\nOpcion: ");
     scanf("%d", &rta);
 
     return rta;
@@ -109,24 +110,29 @@ int menuOpcion(){
 
 void ventaArticulos(articulos lista[], int tam){
 
-    int auxCant, auxSucursal, auxArt;
+    int auxCant, auxSucursal, auxArt, flag1=0;
 
+    system("cls");
     printf("Registro de venta");
-    printf("\n\tIngrese N° de sucursal: ");
+    printf("\n\n\tIngrese N° de sucursal: ");
     scanf("%d", &auxSucursal);
     while(auxSucursal<1 || auxSucursal>3){
     printf("\tIngrese N° de sucursal valida: ");
     scanf("%d", &auxSucursal);
     }
 
-    printf("\n\tArticulos existentes en esta sucursal: ");
+    printf("\nArticulos existentes en esta sucursal: ");
     for(int i=0 ; i<tam ; i++){
         if(lista[i].sucursal==auxSucursal){
             mostrar(lista, TAM, i);
+            flag1=1;
         }
     }
+    if(flag1=0){
+        printf("\nNo se ingresaron articulos en esa sucursal");
+    }
 
-    printf("\tIngrese N° de articulo: ");
+    printf("\n\tIngrese N° de articulo: ");
     scanf("%d", &auxArt);
 
     printf("\tIngrese cantidad vendida: ");
@@ -134,10 +140,11 @@ void ventaArticulos(articulos lista[], int tam){
 
     for(int i=0 ; i<tam ; i++){
         if(lista[i].nroArticulo==auxArt && lista[i].sucursal==auxSucursal){
-            if(lista[i].cantidad>auxCant){
+            if(lista[i].cantidad>=auxCant){
              lista[i].cantidad-=auxCant;
             }else{
-            printf("\nNo hay stock suficiente para realizar la venta");
+            printf("\nNo hay stock suficiente para realizar la venta\n");
+            system("pause");
             }
         }
     }
@@ -145,7 +152,7 @@ void ventaArticulos(articulos lista[], int tam){
 
 void mostrar (articulos lista[], int tam, int i){
 
-    printf("Sucursal: %d\tN° Articulo: %d\tCant. existente: %d", lista[i].sucursal, lista[i].nroArticulo, lista[i].cantidad);
+    printf("\nSucursal: %d\tN° Articulo: %d\tCant. existente: %d", lista[i].sucursal, lista[i].nroArticulo, lista[i].cantidad);
 
 }
 
