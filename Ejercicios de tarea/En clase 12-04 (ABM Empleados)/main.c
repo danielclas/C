@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <string.h>
 
-#define TAM 3
+#define TAM 9
 
 typedef struct{
 
@@ -37,6 +37,8 @@ void mostrarEmpleados (eEmpleado vec[], int tam);
 void agregarEmpleado(eEmpleado vec[], int tam);
 void ordenarParametro(eEmpleado vec[], int tam, int parametro, int orden);
 void ordenarEmpleados(eEmpleado vec[], int tam);
+void hardCodearEmpleados(eEmpleado vec[], int tam);
+void informesPorAnnio(eEmpleado vec[], int tam);
 
 int menuOpcion();
 
@@ -46,6 +48,7 @@ int main()
     int rta;
 
     inicializarEmpleados(lista, TAM);
+    hardCodearEmpleados(lista, TAM);
 
     do{
         system("cls");
@@ -69,13 +72,18 @@ int main()
             mostrarEmpleados(lista, TAM);
             break;
         case 6:
+            system("cls");
+            printf("Informes");
+            informesPorAnnio(lista, TAM);
+            break;
+        case 7:
             printf("\nEl programa ha finalizado\n");
             system("pause");
             break;
         default:
                 system("cls");
         }
-    }while(rta!=6);
+    }while(rta!=7);
 
         return 0;
 }
@@ -206,7 +214,6 @@ for(int i=0 ; i<tam-1 ; i++){
     for(int j=i+1 ; j<tam ;j++){
 
     switch(parametro){
-
         case 1:
             switch(orden){
             case 1:
@@ -390,7 +397,8 @@ int menuOpcion(){
     printf("\n\t3- Modificar empleado");
     printf("\n\t4- Ordenar");
     printf("\n\t5- Listar");
-    printf("\n\t6- Salir");
+    printf("\n\t6- Informes");
+    printf("\n\t7- Salir");
     printf("\n\n\tIngrese una opcion: ");
     scanf("%d", &rta);
 
@@ -462,5 +470,50 @@ void mostrarEmpleados(eEmpleado vec[], int tam){
         system("pause");
 }
 
+void hardCodearEmpleados(eEmpleado vec[], int tam){
+
+    eEmpleado empleados[]={
+        {1001,"Juan",'m',25000,{2,6,1998},1},
+        {1002,"Maria",'f',30000,{6,4,1996},1},
+        {1003,"Lucas",'m',15000,{10,12,2002},1},
+        {1004,"Belen",'f',20000,{7,1,2010},1},
+        {1005,"Mario",'m',90000,{6,5,2014},1},
+        {1006,"Juana",'f',20000,{1,7,1999},1},
+        {1007,"Daniel",'m',9000,{16,5,2014},1},
+        {1008,"Kevn",'m',70000,{4,5,2010},1},
+        {1009,"Claudia",'f',120000,{2,5,2000},1}
+            };
+
+    for(int i=0 ; i<tam ; i++){
+        vec[i]=empleados[i];
+    }
+
+}
+
+void informesPorAnnio(eEmpleado vec[], int tam){
+
+    int annio;
+    int flagMostrar=0;
+
+    printf("\n\n\tIngrese el anio a comprar: ");
+    scanf("%d", &annio);
+
+    for(int i=0 ; i<tam ; i++){
+        if(vec[i].ingreso.anno==annio){
+            mostrarEmpleado(vec[i]);
+            flagMostrar=1;
+        }
+    }
+
+    if(flagMostrar==0){
+        printf("\nNingun empleado ingreso en ese anio\n");
+    }
+
+    printf("\n\n");
+    system("pause");
+
+
+
+}
 
 
