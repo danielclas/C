@@ -512,8 +512,7 @@ void informesPorAnnio(eEmpleado vec[], int tam){
     printf("\n\n");
     system("pause");
 
-
-
 }
+
 
 
