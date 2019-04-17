@@ -16,6 +16,13 @@ typedef struct{
 
 typedef struct{
 
+    int ID;
+    char desc[20];
+
+}eSector;
+
+typedef struct{
+
     int legajo;
     char nombre[20];
     char sexo;
@@ -38,21 +45,27 @@ void agregarEmpleado(eEmpleado vec[], int tam);
 void ordenarParametro(eEmpleado vec[], int tam, int parametro, int orden);
 void ordenarEmpleados(eEmpleado vec[], int tam);
 void hardCodearEmpleados(eEmpleado vec[], int tam);
+void hardCodearSectores(eSector sectores[], int tam);
 void informesPorAnnio(eEmpleado vec[], int tam);
+void mostrarSectores(eSector sectores[], int tam);
 
 int menuOpcion();
 
 int main()
 {
     eEmpleado lista[TAM];
+    eSector sectores[5];
     int rta;
 
     inicializarEmpleados(lista, TAM);
     hardCodearEmpleados(lista, TAM);
+    hardCodearSectores(sectores, 5);
+
 
     do{
         system("cls");
         rta=menuOpcion();
+
         switch(rta){
 
         case 1:
@@ -511,6 +524,25 @@ void informesPorAnnio(eEmpleado vec[], int tam){
 
     printf("\n\n");
     system("pause");
+
+}
+
+void hardCodearSectores(eSector sectores[], int tam){
+
+    eSector sectAux[]={{1, "RRHH"},{2, "Ventas"},{3, "Compras"},{4, "Gerencia"},{5, "Calidad"}};
+
+    for(int i=0 ; i<tam ; i++){
+        sectores[i]=sectAux[i];
+    }
+
+}
+
+void mostrarSectores(eSector sectores[], int tam){
+
+    for(int i=0 ; i<tam ; i++){
+        printf("\n%d- %s", sectores[i].ID, sectores[i].desc);
+    }
+
 
 }
 
