@@ -24,6 +24,7 @@ typedef struct{
 typedef struct{
 
     int legajo;
+    int idSector;
     char nombre[20];
     char sexo;
     float sueldo;
@@ -38,17 +39,17 @@ int inicializarEmpleados (eEmpleado vec[], int tam);
 int buscarLibre (eEmpleado vec[], int tam);
 int buscarEmpleado (eEmpleado vec[], int tam, int legajoABuscar);
 void bajaEmpleado(eEmpleado vec[], int tam);
-void modificarEmpleado(eEmpleado vec[], int tam);
-void mostrarEmpleado (eEmpleado emp);
-void mostrarEmpleados (eEmpleado vec[], int tam);
-void agregarEmpleado(eEmpleado vec[], int tam);
+void modificarEmpleado(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void mostrarEmpleado (eEmpleado emp, eSector sectores[], int sector);
+void mostrarEmpleados (eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void agregarEmpleado(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void ordenarParametro(eEmpleado vec[], int tam, int parametro, int orden);
 void ordenarEmpleados(eEmpleado vec[], int tam);
 void hardCodearEmpleados(eEmpleado vec[], int tam);
 void hardCodearSectores(eSector sectores[], int tam);
 void informesPorAnnio(eEmpleado vec[], int tam);
 void mostrarSectores(eSector sectores[], int tam);
-
+int elegirSector (eSector sectores[], int tam);
 int menuOpcion();
 
 int main()
@@ -58,9 +59,8 @@ int main()
     int rta;
 
     inicializarEmpleados(lista, TAM);
-    hardCodearEmpleados(lista, TAM);
     hardCodearSectores(sectores, 5);
-
+    hardCodearEmpleados(lista, TAM);
 
     do{
         system("cls");
@@ -69,20 +69,20 @@ int main()
         switch(rta){
 
         case 1:
-            agregarEmpleado(lista, TAM);
+            agregarEmpleado(lista, sectores, TAM, 5);
             system("cls");
             break;
         case 2:
             bajaEmpleado(lista, TAM);
             break;
         case 3:
-            modificarEmpleado(lista, TAM);
+            modificarEmpleado(lista, sectores, TAM, 5);
             break;
         case 4:
             ordenarEmpleados(lista, TAM);
             break;
         case 5:
-            mostrarEmpleados(lista, TAM);
+            mostrarEmpleados(lista, sectores, TAM, 5);
             break;
         case 6:
             system("cls");
@@ -101,7 +101,7 @@ int main()
         return 0;
 }
 
-void modificarEmpleado(eEmpleado vec[], int tam){
+void modificarEmpleado(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
     int legajoModificar;
     int indexBuscar;
@@ -120,9 +120,9 @@ void modificarEmpleado(eEmpleado vec[], int tam){
         do{
             system("cls");
             printf("\nEmpleado seleccionado legajo %d", legajoModificar);
-            mostrarEmpleado(vec[indexBuscar]);
+            mostrarEmpleado(vec[indexBuscar], sectores, tamSect);
             printf("\n\nIngrese el dato a modificar: ");
-            printf("\n\n\t1-Nombre\n\t2-Sueldo\n\t3-Sexo\n\t4-Fecha de Ingreso\n\t5- Terminar modificacion");
+            printf("\n\n\t1-Nombre\n\t2-Sueldo\n\t3-Sexo\n\t4-Fecha de Ingreso\n\t5-Sector\n\t6- Terminar modificacion");
             printf("\n\nOpcion: ");
             scanf("%d", &campoModificar);
 
@@ -151,6 +151,9 @@ void modificarEmpleado(eEmpleado vec[], int tam){
                     scanf("%d", &vec[indexBuscar].ingreso.anno);
                     break;
                 case 5:
+                     vec[indexBuscar].idSector=elegirSector(sectores, tamSect);
+                    break;
+                case 6:
                     printf("\n\tModificacion terminada\n");
                     system("pause");
                     break;
@@ -164,7 +167,7 @@ void modificarEmpleado(eEmpleado vec[], int tam){
         }
 }
 
-void bajaEmpleado(eEmpleado vec[], int tam){
+void bajaEmpleado(eEmpleado vec[], eSector sectores[], int tam){
 
     int legajoBaja;
     int indexBuscar;
@@ -180,7 +183,13 @@ void bajaEmpleado(eEmpleado vec[], int tam){
             system("pause");
     }else{
         printf("\nEmpleado con legajo %d: ", legajoBaja);
-        mostrarEmpleado(vec[indexBuscar]);
+        for(int i=0 ; i<tam ; i++){
+            for(int j=0 ; j<tam ; j++){
+                if(vec[i].idSector==sectores[j].ID){
+                    mostrarEmpleado(vec[indexBuscar], sectores, j);
+                }
+            }
+        }
 
         printf("\n\nConfirmar la baja de este empleado? S/N: ");
         fflush(stdin);
@@ -352,7 +361,7 @@ for(int i=0 ; i<tam-1 ; i++){
         }
 }
 }
-void agregarEmpleado(eEmpleado vec[], int tam){
+void agregarEmpleado(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
     int legajo;
     int indexLibre;
@@ -386,6 +395,7 @@ void agregarEmpleado(eEmpleado vec[], int tam){
             scanf("%d", &vec[indexLibre].ingreso.mes);
             printf("\tAño: ");
             scanf("%d", &vec[indexLibre].ingreso.anno);
+            vec[indexLibre].idSector=elegirSector(sectores, tamSect);
             printf("\nEl empleado ha sido registrado por exito\n");
             system("pause");
         }else{
@@ -458,20 +468,25 @@ int buscarEmpleado(eEmpleado vec[], int tam, int legajoABuscar){
     return indexEmpleado;
 }
 
-void mostrarEmpleado(eEmpleado emp){
+void mostrarEmpleado(eEmpleado emp, eSector sectores[], int sector){
 
         printf("\n\n\tLegajo: %d\tNombre: %s\tSueldo: %.2f\tSexo: %c", emp.legajo, emp.nombre, emp.sueldo, emp.sexo);
-        printf("\n\tIngreso: %02d/%02d/%d", emp.ingreso.dia, emp.ingreso.mes, emp.ingreso.anno);
+        printf("\n\tIngreso: %02d/%02d/%d\tSector: %s", emp.ingreso.dia, emp.ingreso.mes, emp.ingreso.anno, eSector[sector].desc);
 
 }
 
-void mostrarEmpleados(eEmpleado vec[], int tam){
+void mostrarEmpleados(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
-    int flagMostrar=0;
+    int flagMostrar=0, sector;
 
         for(int i=0 ; i<tam ; i++){
             if(vec[i].ocupado==1){
-              mostrarEmpleado(vec[i]);
+                for(int j=0 ; j<tamSect ; j++{
+                    if(vec[i].idSector==sectores[j].ID){
+                        sector=j;
+                    }
+                }
+              mostrarEmpleado(vec[i], sector);
               flagMostrar=1;
             }
         }
@@ -486,15 +501,15 @@ void mostrarEmpleados(eEmpleado vec[], int tam){
 void hardCodearEmpleados(eEmpleado vec[], int tam){
 
     eEmpleado empleados[]={
-        {1001,"Juan",'m',25000,{2,6,1998},1},
-        {1002,"Maria",'f',30000,{6,4,1996},1},
-        {1003,"Lucas",'m',15000,{10,12,2002},1},
-        {1004,"Belen",'f',20000,{7,1,2010},1},
-        {1005,"Mario",'m',90000,{6,5,2014},1},
-        {1006,"Juana",'f',20000,{1,7,1999},1},
-        {1007,"Daniel",'m',9000,{16,5,2014},1},
-        {1008,"Kevin",'m',70000,{4,5,2010},1},
-        {1009,"Claudia",'f',120000,{2,5,2000},1}
+        {1001,1,"Juan",'m',25000,{2,6,1998},1},
+        {1002,3,"Maria",'f',30000,{6,4,1996},1},
+        {1003,4,"Lucas",'m',15000,{10,12,2002},1},
+        {1004,4,"Belen",'f',20000,{7,1,2010},1},
+        {1005,5,"Mario",'m',90000,{6,5,2014},1},
+        {1006,1,"Juana",'f',20000,{1,7,1999},1},
+        {1007,3,"Daniel",'m',9000,{16,5,2014},1},
+        {1008,2,"Kevin",'m',70000,{4,5,2010},1},
+        {1009,3,"Claudia",'f',120000,{2,5,2000},1}
             };
 
     for(int i=0 ; i<tam ; i++){
@@ -543,6 +558,17 @@ void mostrarSectores(eSector sectores[], int tam){
         printf("\n%d- %s", sectores[i].ID, sectores[i].desc);
     }
 
+}
+
+int elegirSector(eSector sectores[], int tam){
+
+    int idSector;
+
+    printf("Elija un sector: ");
+    mostrarSectores(sectores, tam);
+    scanf("%d", &idSector);
+
+    return idSector;
 
 }
 
