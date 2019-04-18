@@ -52,6 +52,9 @@ void informesPorAnnio(eEmpleado vec[], eSector sectores[], int tam, int tamSect)
 void mostrarSectores(eSector sectores[], int tam);
 int elegirSector (eSector sectores[], int tam);
 int averiguarSector(eEmpleado emp, eSector sectores[], int tamSect);
+void swapearEmp(int i, int j, eEmpleado vec[]);
+void printEmpPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void menuInformes();
 int menuOpcion();
 
 int main()
@@ -87,8 +90,7 @@ int main()
             mostrarEmpleados(lista, sectores, TAM, 5);
             break;
         case 6:
-            system("cls");
-            printf("Informes");
+            menuInformes(lista, sectores, TAM, 5);
             informesPorAnnio(lista, sectores, TAM, 5);
             break;
         case 7:
@@ -223,9 +225,17 @@ void ordenarEmpleados(eEmpleado vec[], int tam){
     ordenarParametro(vec, TAM, parametro, orden);
 }
 
+void swapearEmp(int i, int j, eEmpleado vec[])
+{
+    eEmpleado auxEmp;
+
+    auxEmp=vec[i];
+    vec[i]=vec[j];
+    vec[j]=auxEmp;
+
+}
 void ordenarParametro(eEmpleado vec[], int tam, int parametro, int orden){
 
-    eEmpleado auxEmp;
 
 for(int i=0 ; i<tam-1 ; i++){
 
@@ -237,17 +247,13 @@ for(int i=0 ; i<tam-1 ; i++){
             case 1:
                   if(vec[i].legajo>vec[j].legajo){
                     ///Legajo creciente
-                        auxEmp=vec[i];
-                        vec[i]=vec[j];
-                        vec[j]=auxEmp;
+                    swapearEmp(i, j, vec);
                     }
                 break;
             case 2:
                   if(vec[i].legajo<vec[j].legajo){
                     ///Legajo decreciente
-                        auxEmp=vec[i];
-                        vec[i]=vec[j];
-                        vec[j]=auxEmp;
+                    swapearEmp(i, j, vec);
                     }
                 break;
                 }
@@ -257,16 +263,12 @@ for(int i=0 ; i<tam-1 ; i++){
             case 1:
                 if(vec[i].sexo>vec[j].sexo){
                     ///Sexo creciente
-                        auxEmp=vec[i];
-                        vec[i]=vec[j];
-                        vec[j]=auxEmp;
+                      swapearEmp(i, j, vec);
                     }
             case 2:
                 if(vec[i].sexo<vec[j].sexo){
                     ///Sexo decreciente
-                        auxEmp=vec[i];
-                        vec[i]=vec[j];
-                        vec[j]=auxEmp;
+                     swapearEmp(i, j, vec);
                     }
                 }
                 break;
@@ -275,17 +277,13 @@ for(int i=0 ; i<tam-1 ; i++){
                 case 1:
                     if(vec[i].sueldo>vec[j].sueldo){
                     ///Sueldo creciente
-                        auxEmp=vec[i];
-                        vec[i]=vec[j];
-                        vec[j]=auxEmp;
+                        swapearEmp(i, j, vec);
                         }
                 break;
             case 2:
                 if(vec[i].sueldo<vec[j].sueldo){
                     ///Sueldo decreciente
-                        auxEmp=vec[i];
-                        vec[i]=vec[j];
-                        vec[j]=auxEmp;
+                       swapearEmp(i, j, vec);
                 }
                 break;
             }
@@ -295,17 +293,13 @@ for(int i=0 ; i<tam-1 ; i++){
             case 1:
                 if((stricmp(vec[i].nombre, vec[j].nombre)==1)){
                     ///Nombre creciente
-                    auxEmp=vec[i];
-                    vec[i]=vec[j];
-                    vec[j]=auxEmp;
+                    swapearEmp(i, j, vec);
             }
             break;
             case 2:
             if((stricmp(vec[i].nombre, vec[j].nombre)==-1)){
                 ///Nombre decreciente
-                    auxEmp=vec[i];
-                    vec[i]=vec[j];
-                    vec[j]=auxEmp;
+                    swapearEmp(i, j, vec);
                 }
             }
             break;
@@ -314,19 +308,13 @@ for(int i=0 ; i<tam-1 ; i++){
             case 1:
                 if(vec[i].ingreso.anno>vec[j].ingreso.anno){
                     ///Ingreso creciente
-                    auxEmp=vec[i];
-                    vec[i]=vec[j];
-                    vec[j]=auxEmp;
+                    swapearEmp(i, j, vec);
                 }else{
                     if(vec[i].ingreso.anno==vec[j].ingreso.anno && vec[i].ingreso.mes>vec[j].ingreso.mes){
-                        auxEmp=vec[i];
-                        vec[i]=vec[j];
-                        vec[j]=auxEmp;
+                        swapearEmp(i, j, vec);
                     }else{
                         if(vec[i].ingreso.anno==vec[j].ingreso.anno && vec[i].ingreso.mes==vec[j].ingreso.mes && vec[i].ingreso.dia>vec[j].ingreso.dia){
-                           auxEmp=vec[i];
-                            vec[i]=vec[j];
-                            vec[j]=auxEmp;
+                           swapearEmp(i, j, vec);
                         }
                     }
                 }
@@ -334,19 +322,13 @@ for(int i=0 ; i<tam-1 ; i++){
             case 2:
                 if(vec[i].ingreso.anno<vec[j].ingreso.anno){
                     ///Ingreso creciente
-                    auxEmp=vec[i];
-                    vec[i]=vec[j];
-                    vec[j]=auxEmp;
+                   swapearEmp(i, j, vec);
                 }else{
                     if(vec[i].ingreso.anno==vec[j].ingreso.anno && vec[i].ingreso.mes<vec[j].ingreso.mes){
-                        auxEmp=vec[i];
-                        vec[i]=vec[j];
-                        vec[j]=auxEmp;
+                       swapearEmp(i, j, vec);
                     }else{
                         if(vec[i].ingreso.anno==vec[j].ingreso.anno && vec[i].ingreso.mes==vec[j].ingreso.mes && vec[i].ingreso.dia<vec[j].ingreso.dia){
-                           auxEmp=vec[i];
-                            vec[i]=vec[j];
-                            vec[j]=auxEmp;
+                          swapearEmp(i, j, vec);
                         }
                     }
                 }
@@ -466,14 +448,14 @@ int buscarEmpleado(eEmpleado vec[], int tam, int legajoABuscar){
 
 void mostrarEmpleado(eEmpleado emp, eSector sectores[], int sector){
 
-        printf("\n\n\tLegajo: %d\tNombre: %s\tSueldo: %.2f\tSexo: %c", emp.legajo, emp.nombre, emp.sueldo, emp.sexo);
+        printf("\n\tLegajo: %d\tNombre: %s\tSueldo: %.2f\tSexo: %c", emp.legajo, emp.nombre, emp.sueldo, emp.sexo);
         printf("\n\tIngreso: %02d/%02d/%d\tSector: %s", emp.ingreso.dia, emp.ingreso.mes, emp.ingreso.anno, sectores[sector].desc);
 
 }
 
 void mostrarEmpleados(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
-    int flagMostrar=0, sector;
+    int flagMostrar=0;
 
         for(int i=0 ; i<tam ; i++){
             if(vec[i].ocupado==1){
@@ -561,7 +543,8 @@ void hardCodearSectores(eSector sectores[], int tam){
 void mostrarSectores(eSector sectores[], int tam){
 
     for(int i=0 ; i<tam ; i++){
-        printf("\n%d- %s", sectores[i].ID, sectores[i].desc);
+        printf("\n\t%d- %s", sectores[i].ID, sectores[i].desc);
+        printf("\n");
     }
 
 }
@@ -570,7 +553,7 @@ int elegirSector(eSector sectores[], int tam){
 
     int idSector;
 
-    printf("Elija un sector: ");
+    printf("\nElija un sector: \n");
     mostrarSectores(sectores, tam);
     printf("\nOpcion: ");
     scanf("%d", &idSector);
@@ -579,5 +562,72 @@ int elegirSector(eSector sectores[], int tam){
 
 }
 
+void menuInformes(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
+
+    int opcion;
+
+    do{
+        system("cls");
+        opcion=opcionesInformes();
+        switch(opcion){
+
+        case 1:
+            printEmpPorSector(vec, sectores, tam, tamSect);
+            system("pause");
+            break;
+        case 2:
+            break;
+
+
+
+
+
+
+
+        default:
+            system("cls");
+        }
+
+
+
+
+    }while(opcion!=7);
+
+
+}
+
+int opcionesInformes(){
+
+    int opcion;
+
+    printf("Informes: ");
+    printf("\n\t1- Ingrese sector para ver empleados");
+    printf("\n\t2- Ver los empleados por sector");
+    printf("\n\t3- Total de empleados por sector");
+    printf("\n\t4- El/los sectores con mas empleados");
+    printf("\n\t5- Datos de los que mas ganan por sector");
+    printf("\n\t6- Averiguar ingresos por año");
+    printf("\n\t7- Volver al menu principal");
+    printf("\n\nOpcion: ");
+    scanf("%d", &opcion);
+
+    return opcion;
+
+}
+
+void printEmpPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
+
+    int sectorAMostrar;
+
+    sectorAMostrar=elegirSector(sectores, tamSect);
+
+    for(int i=0 ; i<tam ; i++){
+        if(sectorAMostrar==vec[i].idSector){
+            mostrarEmpleado(vec[i], sectores, sectorAMostrar-1);
+        }
+
+    }
+
+}
 
 
