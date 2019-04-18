@@ -53,7 +53,9 @@ void mostrarSectores(eSector sectores[], int tam);
 int elegirSector (eSector sectores[], int tam);
 int averiguarSector(eEmpleado emp, eSector sectores[], int tamSect);
 void swapearEmp(int i, int j, eEmpleado vec[]);
-void printEmpPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void seleccionarYMostrarSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void totalEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void sectorMaxEmp(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void menuInformes();
 int menuOpcion();
 
@@ -449,7 +451,7 @@ int buscarEmpleado(eEmpleado vec[], int tam, int legajoABuscar){
 void mostrarEmpleado(eEmpleado emp, eSector sectores[], int sector){
 
         printf("\n\tLegajo: %d\tNombre: %s\tSueldo: %.2f\tSexo: %c", emp.legajo, emp.nombre, emp.sueldo, emp.sexo);
-        printf("\n\tIngreso: %02d/%02d/%d\tSector: %s", emp.ingreso.dia, emp.ingreso.mes, emp.ingreso.anno, sectores[sector].desc);
+        printf("\n\tIngreso: %02d/%02d/%d\tSector: %s\n", emp.ingreso.dia, emp.ingreso.mes, emp.ingreso.anno, sectores[sector].desc);
 
 }
 
@@ -572,18 +574,25 @@ void menuInformes(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
         switch(opcion){
 
         case 1:
-            printEmpPorSector(vec, sectores, tam, tamSect);
+            seleccionarYMostrarSect(vec, sectores, tam, tamSect);
             system("pause");
             break;
         case 2:
+            printEmpPorSect(vec, sectores, tam, tamSect);
             break;
-
-
-
-
-
-
-
+        case 3:
+            totalEmpPorSect(vec, sectores, tam, tamSect);
+            break;
+        case 4:
+            sectorMaxEmp(vec, sectores, tam, tamSect);
+            break;
+        case 5:
+            break;
+        case 6:
+            informesPorAnnio(vec, sectores, tam, tamSect);
+            break;
+        case 7:
+            break;
         default:
             system("cls");
         }
@@ -601,7 +610,7 @@ int opcionesInformes(){
     int opcion;
 
     printf("Informes: ");
-    printf("\n\t1- Ingrese sector para ver empleados");
+    printf("\n\n\t1- Ingrese sector para ver empleados");
     printf("\n\t2- Ver los empleados por sector");
     printf("\n\t3- Total de empleados por sector");
     printf("\n\t4- El/los sectores con mas empleados");
@@ -615,7 +624,7 @@ int opcionesInformes(){
 
 }
 
-void printEmpPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
+void seleccionarYMostrarSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
     int sectorAMostrar;
 
@@ -625,9 +634,74 @@ void printEmpPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect
         if(sectorAMostrar==vec[i].idSector){
             mostrarEmpleado(vec[i], sectores, sectorAMostrar-1);
         }
-
     }
-
 }
 
+void printEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
+
+    printf("Empleados por sector");
+    for(int i=0 ; i<tamSect ; i++){
+        printf("\n%s:\n", sectores[i].desc);
+        for(int j=0 ; j<tam ; j++){
+            if(sectores[i].ID==vec[j].idSector){
+                mostrarEmpleado(vec[j], sectores, i);
+            }
+        }
+    }
+    system("pause");
+}
+
+void totalEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
+
+    int cont;
+
+    for(int i=0 ; i<tamSect ; i++){
+            cont=0;
+        for(int j=0 ; j<tam ; j++){
+            if(sectores[i].ID==vec[j].idSector){
+                cont++;
+            }
+        }
+    printf("\n%s: %d empleado(s)", sectores[i].desc, cont);
+    }
+    system("pause");
+}
+
+void sectorMaxEmp(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
+
+    int cont, max;
+
+    for(int i=0 ; i<tamSect ; i++){
+            cont=0;
+        for(int j=0 ; j<tam ; j++){
+            if(sectores[i].ID==vec[j].idSector){
+                cont++;
+            }
+        }
+        if(i==0){
+            max=cont;
+        }else{
+            if(cont>max){
+            max=cont;
+            }
+        }
+    }
+
+    printf("Sector(es) con mas empleados: \n");
+    for(int i=0 ; i<tamSect ; i++){
+            cont=0;
+        for(int j=0 ; j<tam ; j++){
+            if(sectores[i].ID==vec[j].idSector){
+                cont++;
+            }
+
+            if(cont==max){
+              printf("%s\n", sectores[i].desc);
+            }
+        }
+    }
+
+    system("pause");
+
+}
 
