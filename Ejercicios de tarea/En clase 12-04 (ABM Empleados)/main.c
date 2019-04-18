@@ -56,6 +56,8 @@ void swapearEmp(int i, int j, eEmpleado vec[]);
 void seleccionarYMostrarSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void totalEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void sectorMaxEmp(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void sueldoMaxPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void printEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void menuInformes();
 int menuOpcion();
 
@@ -126,7 +128,7 @@ void modificarEmpleado(eEmpleado vec[], eSector sectores[], int tam, int tamSect
         do{
             system("cls");
             printf("\nEmpleado seleccionado legajo %d", legajoModificar);
-            mostrarEmpleado(vec[indexBuscar], sectores, tamSect);
+            mostrarEmpleado(vec[indexBuscar], sectores, averiguarSector(vec[indexBuscar], sectores, tamSect));
             printf("\n\nIngrese el dato a modificar: ");
             printf("\n\n\t1-Nombre\n\t2-Sueldo\n\t3-Sexo\n\t4-Fecha de Ingreso\n\t5-Sector\n\t6- Terminar modificacion");
             printf("\n\nOpcion: ");
@@ -168,7 +170,7 @@ void modificarEmpleado(eEmpleado vec[], eSector sectores[], int tam, int tamSect
                     break;
             }
 
-        }while(campoModificar!=5);
+        }while(campoModificar!=6);
 
         }
 }
@@ -564,6 +566,25 @@ int elegirSector(eSector sectores[], int tam){
 
 }
 
+int opcionesInformes(){
+
+    int opcion;
+
+    printf("Informes: ");
+    printf("\n\n\t1- Ingrese sector para ver empleados");
+    printf("\n\t2- Ver los empleados por sector");
+    printf("\n\t3- Total de empleados por sector");
+    printf("\n\t4- El/los sectores con mas empleados");
+    printf("\n\t5- Datos de los que mas ganan por sector");
+    printf("\n\t6- Averiguar ingresos por año");
+    printf("\n\t7- Volver al menu principal");
+    printf("\n\nOpcion: ");
+    scanf("%d", &opcion);
+
+    return opcion;
+
+}
+
 void menuInformes(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
     int opcion;
@@ -587,6 +608,7 @@ void menuInformes(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
             sectorMaxEmp(vec, sectores, tam, tamSect);
             break;
         case 5:
+            sueldoMaxPorSect(vec, sectores, tam, tamSect);
             break;
         case 6:
             informesPorAnnio(vec, sectores, tam, tamSect);
@@ -597,32 +619,10 @@ void menuInformes(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
             system("cls");
         }
 
-
-
-
     }while(opcion!=7);
-
-
 }
 
-int opcionesInformes(){
 
-    int opcion;
-
-    printf("Informes: ");
-    printf("\n\n\t1- Ingrese sector para ver empleados");
-    printf("\n\t2- Ver los empleados por sector");
-    printf("\n\t3- Total de empleados por sector");
-    printf("\n\t4- El/los sectores con mas empleados");
-    printf("\n\t5- Datos de los que mas ganan por sector");
-    printf("\n\t6- Averiguar ingresos por año");
-    printf("\n\t7- Volver al menu principal");
-    printf("\n\nOpcion: ");
-    scanf("%d", &opcion);
-
-    return opcion;
-
-}
 
 void seleccionarYMostrarSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
@@ -694,14 +694,18 @@ void sectorMaxEmp(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
             if(sectores[i].ID==vec[j].idSector){
                 cont++;
             }
-
-            if(cont==max){
-              printf("%s\n", sectores[i].desc);
-            }
+        }
+        if(cont==max){
+            printf("%s\n", sectores[i].desc);
         }
     }
 
     system("pause");
+
+}
+
+void sueldoMaxPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
+
 
 }
 
