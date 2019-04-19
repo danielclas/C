@@ -765,8 +765,10 @@ void inicializarSectores (eSector sectores[], int tamSect){
 void cargarSectores(eSector sectores[], int tamSect){
 
     char rta;
+    int i=0;
 
-    for(int i=0 ; i<tamSect ; i++){
+    for(;i<tamSect ; i++){
+
         sectores[i].ID=i+1;
         printf("\nSector %d, ingrese descripcion: ", sectores[i].ID);
         fflush(stdin);
