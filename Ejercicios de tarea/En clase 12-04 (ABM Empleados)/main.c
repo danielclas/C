@@ -730,26 +730,7 @@ void sectorMaxEmp(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
 void sueldoMaxPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
-    int indexSueldoMax;
-    float sueldoMax;
 
-    for(int i=0 ; i<tamSect ; i++){
-        sueldoMax=0;
-            if(sectores[i].ID!=0){
-                for(int j=0 ; j<tam ; j++){
-                    if(vec[j].ocupado!=0){
-                        if(vec[j].sueldo>sueldoMax){
-                            sueldoMax=vec[j].sueldo;
-                            indexSueldoMax=j;
-                        }
-                    }
-                }
-            printf("%s, sueldo maximo: ", sectores[i].desc);
-            mostrarEmpleado(vec[indexSueldoMax], sectores, i);
-            }
-    }
-    printf("\n");
-    system("pause");
 
 }
 
@@ -767,8 +748,7 @@ void cargarSectores(eSector sectores[], int tamSect){
     char rta;
     int i=0;
 
-    for(;i<tamSect ; i++){
-
+    do{
         sectores[i].ID=i+1;
         printf("\nSector %d, ingrese descripcion: ", sectores[i].ID);
         fflush(stdin);
@@ -776,12 +756,8 @@ void cargarSectores(eSector sectores[], int tamSect){
         printf("\nIngresar otro sector? S/N: ");
         rta=getchar();
         rta=tolower(rta);
-        if(rta=='s'){
-            continue;
-        }else{
-            break;
-        }
-    }
+
+        }while(rta=='s');
 
 }
 
