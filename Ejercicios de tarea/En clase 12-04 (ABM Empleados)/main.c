@@ -510,7 +510,7 @@ int averiguarSector(eEmpleado emp, eSector sectores[], int tamSect){
 void hardCodearEmpleados(eEmpleado vec[], int tam){
 
     eEmpleado empleados[]={
-        {1001,1,"Juan",'m',25000,{2,6,1998},0},
+        {1001,1,"Juan",'m',25000,{2,6,1998},1},
         {1002,3,"Maria",'f',30000,{6,4,1996},1},
         {1003,4,"Lucas",'m',15000,{10,12,2002},1},
         {1004,4,"Belen",'f',20000,{7,1,2010},1},
@@ -613,37 +613,43 @@ void menuInformes(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
     int opcion;
 
-    do{
-        system("cls");
-        opcion=opcionesInformes();
-        switch(opcion){
-
-        case 1:
-            seleccionarYMostrarSect(vec, sectores, tam, tamSect);
-            system("pause");
-            break;
-        case 2:
-            printEmpPorSect(vec, sectores, tam, tamSect);
-            break;
-        case 3:
-            totalEmpPorSect(vec, sectores, tam, tamSect);
-            break;
-        case 4:
-            sectorMaxEmp(vec, sectores, tam, tamSect);
-            break;
-        case 5:
-            sueldoMaxPorSect(vec, sectores, tam, tamSect);
-            break;
-        case 6:
-            informesPorAnnio(vec, sectores, tam, tamSect);
-            break;
-        case 7:
-            break;
-        default:
+    if(vec[0].ocupado==0){
+        printf("\nAun no se han ingresado empleados\n");
+        system("pause");
+    }else{
+        do{
             system("cls");
-        }
+            opcion=opcionesInformes();
+            switch(opcion){
 
-    }while(opcion!=7);
+            case 1:
+                seleccionarYMostrarSect(vec, sectores, tam, tamSect);
+                system("pause");
+                break;
+            case 2:
+                printEmpPorSect(vec, sectores, tam, tamSect);
+                break;
+            case 3:
+                totalEmpPorSect(vec, sectores, tam, tamSect);
+                break;
+            case 4:
+                sectorMaxEmp(vec, sectores, tam, tamSect);
+                break;
+            case 5:
+                sueldoMaxPorSect(vec, sectores, tam, tamSect);
+                break;
+            case 6:
+                informesPorAnnio(vec, sectores, tam, tamSect);
+                break;
+            case 7:
+                break;
+            default:
+                system("cls");
+            }
+
+        }while(opcion!=7);
+    }
+
 }
 
 
@@ -667,7 +673,7 @@ void printEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
     for(int i=0 ; i<tamSect ; i++){
         printf("\n%s:\n", sectores[i].desc);
         for(int j=0 ; j<tam ; j++){
-            if(sectores[i].ID==vec[j].idSector){
+            if(sectores[i].ID==vec[j].idSector && vec[j].ocupado!=0){
                 mostrarEmpleado(vec[j], sectores, i);
             }
         }
