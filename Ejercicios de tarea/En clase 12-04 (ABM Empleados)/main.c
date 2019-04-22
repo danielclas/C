@@ -71,8 +71,8 @@ int main()
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
-    //hardCodearSectores(sectores, TAMSECT);
-    //hardCodearEmpleados(lista, TAM);
+    hardCodearSectores(sectores, TAMSECT);
+    hardCodearEmpleados(lista, TAM);
 
     do{
         system("cls");
@@ -521,7 +521,7 @@ void hardCodearEmpleados(eEmpleado vec[], int tam){
         {1005,5,"Mario",'m',90000,{6,5,2014},1},
         {1006,1,"Juana",'f',20000,{1,7,1999},1},
         {1007,3,"Daniel",'m',9000,{16,5,2014},1},
-        {1008,2,"Kevin",'m',70000,{4,5,2010},1},
+        {1008,1,"Kevin",'m',70000,{4,5,2010},1},
         {1009,3,"Claudia",'f',120000,{2,5,2000},1}
             };
 
@@ -740,8 +740,31 @@ void sectorMaxEmp(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
 void sueldoMaxPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
+    float sueldoMax;
+    int indexMax;
 
-
+    for(int i=0 ; i<tamSect ; i++){
+        if(sectores[i].ID==0){
+            continue;
+        }else{
+            sueldoMax=0;
+            printf("%s, sueldo maximo: ", sectores[i].desc);
+            indexMax=-1;
+            for(int j=0 ; j<tam ; j++){
+                if(vec[j].sueldo>sueldoMax && vec[j].idSector==sectores[i].ID){
+                    sueldoMax=vec[j].sueldo;
+                    indexMax=j;
+                }
+            }
+            if(indexMax!=-1){
+               mostrarEmpleado(vec[indexMax], sectores, i);
+            }else{
+                printf("\n\tSin empleados asignados\n");
+            }
+        }
+    }
+    printf("\n \n");
+    system("pause");
 }
 
 void inicializarSectores (eSector sectores[], int tamSect){
@@ -773,7 +796,6 @@ void cargarSectores(eSector sectores[], int tamSect){
         printf("\nIngresar otro sector? S/N: ");
         rta=getchar();
         rta=tolower(rta);
-        i+=1;
 
     }while(rta=='s');
 
