@@ -35,7 +35,6 @@ typedef struct{
 }eEmpleado;
 
 ///FALTAN VALIDACIONES!!
-///IMPORTANTE: UTILIZAR FUNCION PARA AVERIGUAR SECTOR A MOSTRAR
 
 int inicializarEmpleados (eEmpleado vec[], int tam);
 void inicializarSectores (eSector sectores[], int tamSect);
@@ -72,8 +71,8 @@ int main()
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
-    hardCodearSectores(sectores, TAMSECT);
-    hardCodearEmpleados(lista, TAM);
+    //hardCodearSectores(sectores, TAMSECT);
+    //hardCodearEmpleados(lista, TAM);
 
     do{
         system("cls");
@@ -231,14 +230,19 @@ void ordenarEmpleados(eEmpleado vec[], int tam){
     int parametro;
     int orden;
 
-    printf("\nElija un parametro por el cual ordenar: ");
-    printf("\n\n\t1- Legajo\n\t2- Sexo\n\t3- Sueldo\n\t4- Nombre\n\t5- Fecha de Ingreso");
-    printf("\n\n\tOpcion: ");
-    scanf("%d", &parametro);
-    printf("\nElija el orden: ");
-    printf("\n\t1- Creciente\n\t2- Decreciente");
-    printf("\n\n\tOpcion: ");
-    scanf("%d", &orden);
+    if(vec[0].ocupado==0){
+        printf("\nAun no se han ingresado empleados\n");
+        system("pause");
+    }else{
+        printf("\nElija un parametro por el cual ordenar: ");
+        printf("\n\n\t1- Legajo\n\t2- Sexo\n\t3- Sueldo\n\t4- Nombre\n\t5- Fecha de Ingreso");
+        printf("\n\n\tOpcion: ");
+        scanf("%d", &parametro);
+        printf("\nElija el orden: ");
+        printf("\n\t1- Creciente\n\t2- Decreciente");
+        printf("\n\n\tOpcion: ");
+        scanf("%d", &orden);
+    }
 
     ordenarParametro(vec, TAM, parametro, orden);
 }
@@ -752,18 +756,26 @@ void inicializarSectores (eSector sectores[], int tamSect){
 void cargarSectores(eSector sectores[], int tamSect){
 
     char rta;
-    int i=0;
+    int i;
 
     do{
-        sectores[i].ID=i+1;
-        printf("\nSector %d, ingrese descripcion: ", sectores[i].ID);
+        for(int j=0 ; j<tamSect ; j++){
+            if(sectores[j].ID==0){
+                sectores[j].ID=j+1;
+                i=j;
+                break;
+            }
+        }
+
+        printf("\nSector %d, ingrese descripcion: ", i+1);
         fflush(stdin);
         gets(sectores[i].desc);
         printf("\nIngresar otro sector? S/N: ");
         rta=getchar();
         rta=tolower(rta);
+        i+=1;
 
-        }while(rta=='s');
+    }while(rta=='s');
 
 }
 

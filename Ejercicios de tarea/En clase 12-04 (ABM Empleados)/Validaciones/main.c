@@ -12,8 +12,8 @@ typedef struct{
 
 }ePersona;
 
-char getSexo(ePersona gente[]);
-int getEdad(ePersona gente[]);
+char getSexo();
+int getEdad();
 int getLegajo(ePersona gente[]);
 int getInt();
 void agregarGente(ePersona gente[]);
@@ -23,57 +23,35 @@ void mostrarGente(ePersona gente[]);
 int main()
 {
     ePersona gente[TAM];
-
- char auxString[30];
-    float auxFloat;
-    int largo;
-    int auxInt;
+    int rta;
     int entero;
 
-    gets(auxString);
-    largo=strlen(auxString);
-    puts(auxString);
+    do{
 
-    for(int i=0 ; i<largo ; i++){
-        if(isdigit(auxString[i])==1 && auxString[i]=='.'){
-            continue;
-        }else{
-            printf("No es numerico");
-            break;
-        }
-    }
+    entero=getInt();
+    puts(entero);
 
 
+    printf("1 o 2");
+    scanf("%d", &rta);
 
-    auxFloat=atof(auxString);
-    auxInt=auxFloat;
-
-    if(auxFloat-auxInt!=0){
-        printf("No es entero");
-    }else{
-        puts("ooray");
-    }
+    }while(rta==1);
 
 
 
     return 0;
 }
 
-char getSexo(ePersona gente[]){
+char getSexo(){
 
     char sexo;
 
-    printf("Ingrese sexo: ");
-    fflush(stdin);
-    sexo=getchar();
-    sexo=tolower(sexo);
-
-    while(sexo!='m' && sexo!='f'){
-        printf("Error. Ingrese sexo: ");
+    do{
+        printf("Ingrese sexo (F o M): ");
         fflush(stdin);
         sexo=getchar();
         sexo=tolower(sexo);
-    }
+    }while(sexo!='m' && sexo!='f');
 
     return sexo;
 }
@@ -82,34 +60,59 @@ int getInt(){
 
     char auxString[30];
     float auxFloat;
+    int flagInt=0, flagNum=1;
     int largo;
-    int auxInt;
     int entero;
 
-    gets(auxString);
-    largo=strlen(auxString);
-    puts(auxString);
+    do{
+        printf("Ingrese: ");
+        gets(auxString);
+        largo=strlen(auxString);
+        puts(auxString);
 
-    for(int i=0 ; i<largo ; i++){
-        if(isdigit(auxString[i])==1 && auxString[i]=='.'){
-            continue;
+        if(auxString[0]=='.' || auxString[largo-1]=='.'){
+            flagNum=0;
         }else{
-            printf("No es numerico");
-            break;
+             for(int i=0 ; i<largo ; i++){
+                if(isdigit(auxString[i])==0 && auxString[i]!='.'){
+                    flagNum=0;
+                    break;
+                }
+            }
         }
-    }
 
+        if(flagNum==1){
+            auxFloat=atof(auxString);
+            entero=auxFloat;
 
+            if(auxFloat-entero!=0){
+                flagInt=1;
+            }
+        }
 
-    auxFloat=atof(auxString);
-    auxInt=auxFloat;
-
-    if(auxFloat-auxInt!=0){
-        printf("No es entero");
-    }else{
-        puts("ooray");
-    }
+    }while(flagInt==0);
 
     return entero;
+
+}
+
+void agregarGente(ePersona gente[]){
+
+    for(int i=0 ; i<TAM ; i++){
+        gente[i].sexo=getSexo();
+        gente[i].edad=getEdad();
+    }
+}
+
+int getEdad(){
+
+    int edad;
+
+    do{
+        printf("Ingrese edad: ");
+        edad=getInt();
+    }while(edad<0);
+
+    return edad;
 
 }
