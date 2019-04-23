@@ -25,17 +25,11 @@ int main()
     ePersona gente[TAM];
     int rta;
     int entero;
+    char cadena[20];
 
-    do{
-
+    printf("Ingrese un entero: ");
     entero=getInt();
     puts(entero);
-
-
-    printf("1 o 2");
-    scanf("%d", &rta);
-
-    }while(rta==1);
 
 
 
@@ -58,41 +52,6 @@ char getSexo(){
 
 int getInt(){
 
-    char auxString[30];
-    float auxFloat;
-    int flagInt=0, flagNum=1;
-    int largo;
-    int entero;
-
-    do{
-        printf("Ingrese: ");
-        gets(auxString);
-        largo=strlen(auxString);
-        puts(auxString);
-
-        if(auxString[0]=='.' || auxString[largo-1]=='.'){
-            flagNum=0;
-        }else{
-             for(int i=0 ; i<largo ; i++){
-                if(isdigit(auxString[i])==0 && auxString[i]!='.'){
-                    flagNum=0;
-                    break;
-                }
-            }
-        }
-
-        if(flagNum==1){
-            auxFloat=atof(auxString);
-            entero=auxFloat;
-
-            if(auxFloat-entero!=0){
-                flagInt=1;
-            }
-        }
-
-    }while(flagInt==0);
-
-    return entero;
 
 }
 
