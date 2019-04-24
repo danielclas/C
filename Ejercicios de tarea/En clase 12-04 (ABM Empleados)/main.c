@@ -60,6 +60,7 @@ void sectorMaxEmp(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void sueldoMaxPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void sueldosPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void printEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void sexosPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void cargarSectores(eSector sectores[], int tamSect);
 void menuInformes();
 int menuOpcion();
@@ -72,8 +73,8 @@ int main()
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
-    //hardCodearSectores(sectores, TAMSECT);
-    //hardCodearEmpleados(lista, TAM);
+    hardCodearSectores(sectores, TAMSECT);
+    hardCodearEmpleados(lista, TAM);
 
     do{
         system("cls");
@@ -607,7 +608,8 @@ int opcionesInformes(){
     printf("\n\t5- Datos de los que mas ganan por sector");
     printf("\n\t6- Averiguar ingresos por año");
     printf("\n\t7- Sueldos totales por sector");
-    printf("\n\t8- Volver al menu principal");
+    printf("\n\t8- Cantidad de mujeres y hombres por sector");
+    printf("\n\t9- Volver al menu principal");
     printf("\n\nOpcion: ");
     scanf("%d", &opcion);
 
@@ -651,12 +653,15 @@ void menuInformes(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
                 sueldosPorSect(vec, sectores, tam, tamSect);
                 break;
             case 8:
+                sexosPorSector(vec, sectores, tam, tamSect);
+                break;
+            case 9:
                 break;
             default:
                 system("cls");
             }
 
-        }while(opcion!=8);
+        }while(opcion!=9);
     }
 
 }
@@ -818,12 +823,38 @@ void sueldosPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
                     acum+=vec[j].sueldo;
                 }
             }
-        printf("\nSector %s, sueldos totales: %.2f", sectores[i].desc, acum);
+        printf("\nSector %s, sueldos totales: $%.2f", sectores[i].desc, acum);
         }
     }
 
     system("pause");
 
+
+}
+
+void sexosPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
+
+    int mujeres, hombres;
+
+    for(int i=0 ; i<tamSect ; i++){
+        mujeres=0;
+        hombres=0;
+        if(sectores[i].ID!=0){
+             for(int j=0 ; j<tam ; j++){
+                if(vec[j].idSector==sectores[i].ID){
+                    if(vec[j].sexo=='f'){
+                        mujeres++;
+                    }else{
+                        hombres++;
+                    }
+                }
+            }
+            printf("\n\tSector %s. Mujeres: %d | Hombres: %d\n", sectores[i].desc, mujeres, hombres);
+
+        }
+
+    }
+    system("pause");
 
 }
 
