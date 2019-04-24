@@ -58,6 +58,7 @@ void seleccionarYMostrarSect(eEmpleado vec[], eSector sectores[], int tam, int t
 void totalEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void sectorMaxEmp(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void sueldoMaxPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
+void sueldosPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void printEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void cargarSectores(eSector sectores[], int tamSect);
 void menuInformes();
@@ -71,8 +72,8 @@ int main()
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
-    hardCodearSectores(sectores, TAMSECT);
-    hardCodearEmpleados(lista, TAM);
+    //hardCodearSectores(sectores, TAMSECT);
+    //hardCodearEmpleados(lista, TAM);
 
     do{
         system("cls");
@@ -605,7 +606,8 @@ int opcionesInformes(){
     printf("\n\t4- El/los sectores con mas empleados");
     printf("\n\t5- Datos de los que mas ganan por sector");
     printf("\n\t6- Averiguar ingresos por año");
-    printf("\n\t7- Volver al menu principal");
+    printf("\n\t7- Sueldos totales por sector");
+    printf("\n\t8- Volver al menu principal");
     printf("\n\nOpcion: ");
     scanf("%d", &opcion);
 
@@ -646,12 +648,15 @@ void menuInformes(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
                 informesPorAnnio(vec, sectores, tam, tamSect);
                 break;
             case 7:
+                sueldosPorSect(vec, sectores, tam, tamSect);
+                break;
+            case 8:
                 break;
             default:
                 system("cls");
             }
 
-        }while(opcion!=7);
+        }while(opcion!=8);
     }
 
 }
@@ -798,6 +803,27 @@ void cargarSectores(eSector sectores[], int tamSect){
         rta=tolower(rta);
 
     }while(rta=='s');
+
+}
+
+void sueldosPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
+
+    float acum;
+
+    for (int i=0 ; i<tamSect ; i++){
+        acum=0;
+        if(sectores[i].ID!=0){
+            for(int j=0 ; j<tam ; j++){
+                if(vec[j].idSector==sectores[i].ID){
+                    acum+=vec[j].sueldo;
+                }
+            }
+        printf("\nSector %s, sueldos totales: %.2f", sectores[i].desc, acum);
+        }
+    }
+
+    system("pause");
+
 
 }
 
