@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define TAM 9
-#define TAMSECT 5
+#define TAMSECT 100
 
 typedef struct{
 
@@ -795,21 +795,21 @@ void inicializarSectores (eSector sectores[], int tamSect){
 void cargarSectores(eSector sectores[], int tamSect){
 
     char rta;
-    int i;
+    int j;
 
     do{
-        for(int j=0 ; j<tamSect ; j++){
+        for(j=0 ; j<tamSect ; j++){
             if(sectores[j].ID==0){
                 sectores[j].ID=j+1;
-                i=j;
                 break;
             }
         }
 
-        printf("\nSector %d, ingrese descripcion: ", i+1);
+        printf("\nSector %d, ingrese descripcion: ", j+1);
         fflush(stdin);
-        gets(sectores[i].desc);
+        gets(sectores[j].desc);
         printf("\nIngresar otro sector? S/N: ");
+        fflush(stdin);
         rta=getchar();
         rta=tolower(rta);
 
