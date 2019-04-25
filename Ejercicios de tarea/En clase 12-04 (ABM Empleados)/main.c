@@ -63,6 +63,7 @@ void printEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void sexosPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void cargarSectores(eSector sectores[], int tamSect);
 void menuInformes();
+int generarLegajo(eEmpleado vec[], int tam);
 int menuOpcion();
 
 int main()
@@ -73,8 +74,8 @@ int main()
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
-    hardCodearSectores(sectores, TAMSECT);
-    hardCodearEmpleados(lista, TAM);
+    //hardCodearSectores(sectores, TAMSECT);
+    //hardCodearEmpleados(lista, TAM);
 
     do{
         system("cls");
@@ -373,11 +374,16 @@ void agregarEmpleado(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
         printf("\nNo hay lugares libres\n");
         system("pause");
     }else{
+        /**
+        El codigo comentado retornaba un valor correspondiente a si el empleado existia o no.
+        Con esta modificacion, no se le pide ningun legajo al usuario, se le asigna uno al nuevo empleado de manera automatica.
+        **/
         indexLibre=buscarLibre(vec, TAM);
-        printf("\nIngrese el legajo: ");
-        scanf("%d", &legajo);
+        legajo=generarLegajo(vec, tam);
+        //printf("\nIngrese el legajo: ");
+        //scanf("%d", &legajo);
 
-        if(buscarEmpleado(vec, TAM, legajo)==-1){
+        //if(buscarEmpleado(vec, TAM, legajo)==-1){
      ///Si buscarEmpleado devuelve -1, entonces el empleado no existe. Pido datos
             vec[indexLibre].legajo=legajo;
             printf("\nLegajo: %d", legajo);
@@ -405,14 +411,14 @@ void agregarEmpleado(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
             printf("\nEl empleado ha sido registrado por exito\n");
             system("pause");
-        }else{
+        /**}else{
     ///Si es diferente a -1, entonces existe, y el valor devuelto sera el indice con el que muestro
             printf("\nYa hay un empleado con ese legajo\n");
             indexMostrar=buscarEmpleado(vec, TAM, legajo);
             mostrarEmpleado(vec[indexMostrar], sectores, averiguarSector(vec[indexMostrar], sectores, tamSect));
             printf("\n\n");
             system("pause");
-        }
+        }**/
       }
 
 }
@@ -858,3 +864,19 @@ void sexosPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
 
 }
 
+int generarLegajo(eEmpleado vec[], int tam){
+
+    int indexLibre=buscarLibre(vec, tam);
+    int legajoAnterior;
+    int legajo;
+
+    if(indexLibre==0){
+        legajo=1000;
+    }else{
+        legajoAnterior=vec[indexLibre-1].legajo;
+        legajo=legajoAnterior+1;
+    }
+
+    return legajo;
+
+}
