@@ -75,8 +75,8 @@ int main()
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
-    hardCodearSectores(sectores, TAMSECT);
-    hardCodearEmpleados(lista, TAM);
+    //hardCodearSectores(sectores, TAMSECT);
+    //hardCodearEmpleados(lista, TAM);
 
     do{
         system("cls");
@@ -709,7 +709,7 @@ void totalEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect){
     for(int i=0 ; i<tamSect ; i++){
             cont=0;
         for(int j=0 ; j<tam ; j++){
-            if(sectores[i].ID==vec[j].idSector){
+            if(sectores[i].ID==vec[j].idSector && vec[j].ocupado!=0){
                 cont++;
             }
         }
