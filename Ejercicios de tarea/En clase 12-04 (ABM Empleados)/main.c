@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <conio.h>
 #include <ctype.h>
-#include <string.h>
+
 
 #define TAM 9
-#define TAMSECT 100
+#define TAMSECT 5
 //LINEA DE PRUEBA EN GIT
 typedef struct{
 
@@ -74,8 +75,8 @@ int main()
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
-    //hardCodearSectores(sectores, TAMSECT);
-    //hardCodearEmpleados(lista, TAM);
+    hardCodearSectores(sectores, TAMSECT);
+    hardCodearEmpleados(lista, TAM);
 
     do{
         system("cls");
