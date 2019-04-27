@@ -6,7 +6,7 @@
 
 #define TAM 9
 #define TAMSECT 100
-
+//LINEA DE PRUEBA EN GIT
 typedef struct{
 
     int dia;
