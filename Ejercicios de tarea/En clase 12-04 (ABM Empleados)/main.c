@@ -93,8 +93,7 @@ void mostrarComidas(eComida comidas[], int tamCom);
 void inicializarComidas(eComida comidas[], int tamCom);
 void cargarAlmuerzos(eAlmuerzo almuerzos[], eEmpleado vec[], eComida comidas[], int tam, int tamAlm, int tamCom);
 void cargarComidas(eComida comdias[], int tamCom);
-
-
+void menuAlmuerzos(eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], int tamAlm, int tam, int tamCom);
 
 
 int main()
@@ -119,13 +118,10 @@ int main()
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
     inicializarAlmuerzos(almuerzos, TAMALM);
+    inicializarComidas(comidas, TAMCOM);
     hardCodearSectores(sectores, TAMSECT);
     hardCodearEmpleados(lista, TAM);
 
-    cargarComidas(comidas, TAMCOM);
-    cargarAlmuerzos(almuerzos, lista, comidas, TAM, TAMALM, TAMCOM);
-    mostrarAlmuerzos(almuerzos, comidas, lista, TAMCOM, TAM, TAMALM);
-    system("pause");
 
 
     do{
@@ -157,7 +153,7 @@ int main()
             menuInformes(lista, sectores, TAM, TAMSECT);
             break;
         case 7:
-           mostrarAlmuerzos(almuerzos, comidas, lista, TAMCOM, TAM, TAMALM);
+            menuAlmuerzos(almuerzos, comidas, lista, TAMALM, TAM, TAMCOM);
         case 8:
             printf("\nEl programa ha finalizado\n");
             system("pause");
@@ -1079,11 +1075,62 @@ void cargarComidas(eComida comidas[], int tamCom){
         rta=tolower(rta);
 
     }while(rta=='s');
+}
 
+void menuAlmuerzos(eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], int tamAlm, int tam, int tamCom){
 
+    int opcion;
 
+    do{
+
+        system("cls");
+        printf("\t**Menu Almuerzos**");
+        printf("\n\n\t1- Cargar comidas");
+        printf("\n\t2- Cargar almuerzos");
+        printf("\n\t3- Mostrar comidas");
+        printf("\n\t4- Mostrar almuerzos");
+        printf("\n\t5- Volver al menu principal");
+        printf("\n\nOpcion: ");
+        scanf("%d", &opcion);
+        printf("\n");
+
+        switch(opcion){
+            case 1:
+                cargarComidas(comidas, tamCom);
+                break;
+            case 2:
+                cargarAlmuerzos(almuerzos, vec, comidas, tam, tamAlm, tamCom);
+                break;
+            case 3:
+                if(comidas[0].id==0){
+                    printf("\nAun no se han ingresado comidas\n");
+                }else{
+                    mostrarComidas(comidas, tamCom);
+                }
+                system("pause");
+                break;
+            case 4:
+                if(almuerzos[0].id==0){
+                    printf("\nAun no se han ingresado almuerzos\n");
+                }else{
+                    mostrarAlmuerzos(almuerzos, comidas, vec, tamCom, tam, tamAlm);
+                }
+                system("pause");
+                break;
+            case 5:
+                break;
+            default:
+                system("cls");
+       }
+
+    }while(opcion!=5);
 
 }
+
+
+
+
+
 
 
 
