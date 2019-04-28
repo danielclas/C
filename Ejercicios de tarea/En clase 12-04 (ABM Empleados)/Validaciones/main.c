@@ -25,6 +25,8 @@ typedef struct{
 
 }ePersona;
 
+
+
 char getSexo();
 int getEdad();
 int getLegajo();
@@ -36,41 +38,16 @@ void getNombre(ePersona gente[], int indice);
 int getInt();
 float getFloat();
 float getSueldo();
+void agregarPersona(ePersona gente[], int indice);
+void mostrarPersona(ePersona persona);
 
 
 int main()
 {
     ePersona gente[1];
 
-    puts("Ingrese legajo: ");
-    gente[0].legajo=getLegajo();
-    puts("Ingrese nombre: ");
-    fflush(stdin);
-    getNombre(gente, 0);
-    puts("Ingrese sueldo: $");
-    gente[0].sueldo=getSueldo();
-    puts("Ingrese sexo: ");
-    fflush(stdin);
-    gente[0].sexo=getSexo();
-    puts("Ingrese edad: ");
-    fflush(stdin);
-    gente[0].edad=getEdad();
-    puts("Fecha de ingreso: ");
-    fflush(stdin);
-    getIngreso(gente, 0);
-
-    puts("Legajo: ");
-    printf("%d", gente[0].legajo);
-    puts("Nombre: ");
-    puts(gente[0].nombre);
-    puts("Sueldo: $");
-    printf("%.2f", gente[0].sueldo);
-    puts("Sexo: ");
-    printf("%c", gente[0].sexo);
-    puts("Edad: ");
-    printf("%d", gente[0].edad);
-    puts("Ingreso: ");
-    printf("%02d / %02d / %d", gente[0].ingreso.dia, gente[0].ingreso.mes, gente[0].ingreso.anno);
+   agregarPersona(gente, 0);
+   mostrarPersona(gente[0]);
 
 
 }
@@ -143,16 +120,17 @@ int getInt(){
 }
 
 
-
 int getEdad(){
 
     int edad;
 
     printf("Ingrese edad: ");
+    fflush(stdin);
     edad=getInt();
 
     while(edad<0){
         printf("Error. Ingrese nuevamente: ");
+        fflush(stdin);
         edad=getInt();
     }
 
@@ -304,5 +282,32 @@ float getFloat(){
 
     return flotante;
 
+}
+
+void agregarPersona(ePersona gente[], int indice){
+
+    printf("Ingrese legajo: ");
+    gente[0].legajo=getLegajo();
+    printf("Ingrese nombre: ");
+    fflush(stdin);
+    getNombre(gente, 0);
+    printf("Ingrese sueldo: $");
+    gente[0].sueldo=getSueldo();
+    printf("Ingrese sexo: ");
+    fflush(stdin);
+    gente[0].sexo=getSexo();
+    printf("Ingrese edad: ");
+    fflush(stdin);
+    gente[0].edad=getEdad();
+    printf("Fecha de ingreso: ");
+    fflush(stdin);
+    getIngreso(gente, 0);
+
+}
+
+void mostrarPersona(ePersona persona){
+
+    printf("Legajo\tNombre\tSueldo\tSexo\tEdad\tIngreso");
+    printf("\n%d\t%s\t%.2f\t%c\t%d\t%02d / %02d / %d", persona.legajo, persona.nombre, persona.sueldo, persona.sexo, persona.edad, persona.ingreso.dia, persona.ingreso.mes, persona.ingreso.anno);
 
 }
