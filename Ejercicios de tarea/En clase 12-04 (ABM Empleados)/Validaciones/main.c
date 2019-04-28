@@ -3,15 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "validaciones.h"
-
-
 #define TAM 3
-
-
-
-
-
-
 
 
 int main()
