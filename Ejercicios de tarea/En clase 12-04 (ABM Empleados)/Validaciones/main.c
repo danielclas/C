@@ -17,6 +17,7 @@ typedef struct{
 
     int legajo;
     int edad;
+    float sueldo;
     char sexo;
     char nombre[20];
     eFecha ingreso;
@@ -30,6 +31,7 @@ int getLegajo();
 int getDia();
 int getMes();
 int getAnno();
+void getIngreso(ePersona gente[], int indice);
 void getNombre(ePersona gente[], int indice);
 int getInt();
 float getFloat();
@@ -40,21 +42,48 @@ int main()
 {
     ePersona gente[1];
 
-    float numero;
+    puts("Ingrese legajo: ");
+    gente[0].legajo=getLegajo();
+    puts("Ingrese nombre: ");
+    fflush(stdin);
+    getNombre(gente, 0);
+    puts("Ingrese sueldo: $");
+    gente[0].sueldo=getSueldo();
+    puts("Ingrese sexo: ");
+    fflush(stdin);
+    gente[0].sexo=getSexo();
+    puts("Ingrese edad: ");
+    fflush(stdin);
+    gente[0].edad=getEdad();
+    puts("Fecha de ingreso: ");
+    fflush(stdin);
+    getIngreso(gente, 0);
 
-    numero=getFloat();
+    puts("Legajo: ");
+    printf("%d", gente[0].legajo);
+    puts("Nombre: ");
+    puts(gente[0].nombre);
+    puts("Sueldo: $");
+    printf("%.2f", gente[0].sueldo);
+    puts("Sexo: ");
+    printf("%c", gente[0].sexo);
+    puts("Edad: ");
+    printf("%d", gente[0].edad);
+    puts("Ingreso: ");
+    printf("%02d / %02d / %d", gente[0].ingreso.dia, gente[0].ingreso.mes, gente[0].ingreso.anno);
 
-    printf("%f", numero);
 
+}
 
+void getIngreso(ePersona gente[], int indice){
 
+    puts("Dia: ");
+    gente[indice].ingreso.dia=getDia();
+    puts("Mes: ");
+    gente[indice].ingreso.mes=getMes();
+    puts("Anno: ");
+    gente[indice].ingreso.anno=getAnno();
 
-
-
-
-
-
-    return 0;
 }
 
 char getSexo(){
@@ -199,7 +228,7 @@ int getMes(){
 
     mes=getInt();
 
-    while(mes<2 || mes>12){
+    while(mes<1 || mes>12){
         puts("Error. Ingrese nuevamente: ");
         mes=getInt();
     }
@@ -224,6 +253,17 @@ int getAnno(){
 
 float getSueldo(){
 
+    float sueldo;
+
+    sueldo=getFloat();
+
+    while(sueldo<0){
+        puts("Error. Ingrese nuevamente: ");
+        sueldo=getFloat();
+    }
+
+    return sueldo;
+
 }
 
 float getFloat(){
@@ -242,7 +282,7 @@ float getFloat(){
         flagOK=1;
 
         for(int i=0 ; i<len ; i++){
-            if(auxiliar[0]=='-' ){
+            if(auxiliar[0]=='-' || auxiliar[i]=='.'){
                 continue;
             }else{
                 if(isdigit(auxiliar[i])!=1){
