@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define TAM 3
 
@@ -18,6 +19,7 @@ typedef struct{
     int edad;
     char sexo;
     char nombre[20];
+    eFecha ingreso;
 
 
 }ePersona;
@@ -25,16 +27,27 @@ typedef struct{
 char getSexo();
 int getEdad();
 int getLegajo();
+int getDia();
+int getMes();
+int getAnno();
+void getNombre(ePersona gente[], int indice);
 int getInt();
-void agregarGente(ePersona gente[]);
-void mostrarPersona(ePersona gente[]);
-void mostrarGente(ePersona gente[]);
+float getFloat();
+float getSueldo();
+
 
 int main()
 {
     ePersona gente[1];
-    int entero;
-    char cadena[20];
+
+    float numero;
+
+    numero=getFloat();
+
+    printf("%f", numero);
+
+
+
 
 
 
@@ -100,13 +113,7 @@ int getInt(){
 
 }
 
-void agregarGente(ePersona gente[]){
 
-    for(int i=0 ; i<TAM ; i++){
-        gente[i].sexo=getSexo();
-        gente[i].edad=getEdad();
-    }
-}
 
 int getEdad(){
 
@@ -136,5 +143,126 @@ int getLegajo(){
     }
 
     return legajo;
+
+}
+
+void getNombre(ePersona gente[], int indice){
+
+    char nombre[50];
+    int len;
+    int flagOK;
+
+    gets(nombre);
+    fflush(stdin);
+    len=strlen(nombre);
+
+    do{
+        flagOK=1;
+
+        for(int i=0 ; i<len ; i++){
+            if(isalpha(nombre[i])==0){
+                flagOK=0;
+                break;
+            }
+        }
+
+        if(flagOK==0){
+            puts("Error. Ingrese nuevamente: ");
+            fflush(stdin);
+            gets(nombre);
+        }
+
+    }while(flagOK==0);
+
+    strcpy(gente[indice].nombre, nombre);
+
+}
+
+int getDia(){
+
+    int dia;
+
+    dia=getInt();
+
+    while(dia<1 || dia>31){
+        puts("Error. Ingrese nuevamente: ");
+        dia=getInt();
+    }
+
+    return dia;
+
+}
+
+int getMes(){
+
+    int mes;
+
+    mes=getInt();
+
+    while(mes<2 || mes>12){
+        puts("Error. Ingrese nuevamente: ");
+        mes=getInt();
+    }
+
+    return mes;
+}
+
+int getAnno(){
+
+    int anno;
+
+    anno=getInt();
+
+    while(anno<0){
+        puts("Error. Ingrese nuevamente: ");
+        anno=getInt();
+    }
+
+    return anno;
+
+}
+
+float getSueldo(){
+
+}
+
+float getFloat(){
+
+    char auxiliar[50];
+    int len;
+    int flagOK;
+    float flotante;
+
+    gets(auxiliar);
+    fflush(stdin);
+    len=strlen(auxiliar);
+
+    do{
+
+        flagOK=1;
+
+        for(int i=0 ; i<len ; i++){
+            if(auxiliar[0]=='-' ){
+                continue;
+            }else{
+                if(isdigit(auxiliar[i])!=1){
+                    flagOK=0;
+                    break;
+                }
+            }
+        }
+
+        if(flagOK==1){
+            flotante=atof(auxiliar);
+        }else{
+            printf("Error. Ingrese nuevamente: ");
+            fflush(stdin);
+            gets(auxiliar);
+        }
+
+    }while(flagOK==0);
+
+    return flotante;
+
 
 }
