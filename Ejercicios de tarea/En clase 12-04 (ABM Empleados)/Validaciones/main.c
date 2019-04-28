@@ -6,16 +6,25 @@
 
 typedef struct{
 
+    int dia;
+    int mes;
+    int anno;
+
+}eFecha;
+
+typedef struct{
+
     int legajo;
     int edad;
     char sexo;
     char nombre[20];
 
+
 }ePersona;
 
 char getSexo();
 int getEdad();
-int getLegajo(ePersona gente[]);
+int getLegajo();
 int getInt();
 void agregarGente(ePersona gente[]);
 void mostrarPersona(ePersona gente[]);
@@ -23,17 +32,13 @@ void mostrarGente(ePersona gente[]);
 
 int main()
 {
-    ePersona gente[TAM];
-    int rta;
+    ePersona gente[1];
     int entero;
     char cadena[20];
 
-    printf("Ingrese un entero: ");
-    entero=getInt();
-    printf("%d", entero);
 
-    //entero=getEdad();
-    //printf("%d", entero);
+
+
 
 
     return 0;
@@ -48,6 +53,7 @@ char getSexo(){
         fflush(stdin);
         sexo=getchar();
         sexo=tolower(sexo);
+
     }while(sexo!='m' && sexo!='f');
 
     return sexo;
@@ -115,5 +121,20 @@ int getEdad(){
     }
 
     return edad;
+
+}
+
+int getLegajo(){
+
+    int legajo;
+
+    legajo=getInt();
+
+    while(legajo<0){
+        printf("Error. Ingrese nuevamente: ");
+        legajo=getInt();
+    }
+
+    return legajo;
 
 }
