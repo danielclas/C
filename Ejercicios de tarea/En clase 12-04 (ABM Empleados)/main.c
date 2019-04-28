@@ -4,12 +4,13 @@
 #include <conio.h>
 #include <ctype.h>
 
-
 #define TAM 9
 #define TAMSECT 5
 #define TAMCOM  5
 #define TAMALM  10
+
 //LINEA DE PRUEBA EN GIT
+
 typedef struct{
 
     int dia;
@@ -33,8 +34,6 @@ typedef struct{
     eFecha fecha;
 
 }eAlmuerzo;
-
-
 
 typedef struct{
 
@@ -89,6 +88,12 @@ int menuOpcion();
 void mostrarAlmuerzo(eAlmuerzo almuerzo, eComida comidas[], eEmpleado vec[], int tamCom, int tam);
 int buscarComida(eAlmuerzo almuerzo, eComida comidas[], int tamCom);
 void mostrarAlmuerzos(eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], int tamCom, int tam, int tamAlm);
+void inicializarAlmuerzos(eAlmuerzo almuerzos[], int tamAlm);
+void mostrarComidas(eComida comidas[], int tamCom);
+void inicializarComidas(eComida comidas[], int tamCom);
+void cargarAlmuerzos(eAlmuerzo almuerzos[], eEmpleado vec[], eComida comidas[], int tam, int tamAlm, int tamCom);
+void cargarComidas(eComida comdias[], int tamCom);
+
 
 
 
@@ -96,8 +101,8 @@ int main()
 {
     eEmpleado lista[TAM];
     eSector sectores[TAMSECT];
-    eComida comidas[TAMCOM]={{1, "Arroz"}, {2, "Fideos"}, {3, "Milanesas"} , {4, "Hamburguesa"}, {5, "Pollo"}};
-    eAlmuerzo almuerzos[TAMALM]={
+    eComida comidas[TAMCOM];//={{1, "Arroz"}, {2, "Fideos"}, {3, "Milanesas"} , {4, "Hamburguesa"}, {5, "Pollo"}};
+    eAlmuerzo almuerzos[TAMALM]/**={
         {101, 1001, 4, {15,12,2019}}
         ,{102, 1004, 1, {6,2,2019}}
         ,{103, 1006, 3, {7,9,2019}}
@@ -108,13 +113,19 @@ int main()
         ,{108, 1001, 3, {3,5,2019}}
         ,{109, 1003, 2, {8,2,2019}}
         ,{110, 1005, 5, {25,11,2019}}
-     };
+     }**/;
     int rta;
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
+    inicializarAlmuerzos(almuerzos, TAMALM);
     hardCodearSectores(sectores, TAMSECT);
     hardCodearEmpleados(lista, TAM);
+
+    cargarComidas(comidas, TAMCOM);
+    cargarAlmuerzos(almuerzos, lista, comidas, TAM, TAMALM, TAMCOM);
+    mostrarAlmuerzos(almuerzos, comidas, lista, TAMCOM, TAM, TAMALM);
+    system("pause");
 
 
     do{
@@ -497,6 +508,8 @@ int inicializarEmpleados(eEmpleado vec[], int tam){
 
     return result;
 }
+
+
 
 int buscarLibre(eEmpleado vec[], int tam){
 
@@ -945,6 +958,7 @@ void mostrarAlmuerzo(eAlmuerzo almuerzo, eComida comidas[], eEmpleado vec[], int
     indexEmp=buscarEmpleado(vec, tam, almuerzo.legajo);
     indexCom=buscarComida(almuerzo, comidas, tamCom);
 
+
     printf("\n%d\t%d\t%s\t%s\t%02d/%02d/%d", almuerzo.id, almuerzo.legajo, vec[indexEmp].nombre, comidas[indexCom].desc, almuerzo.fecha.dia, almuerzo.fecha.mes, almuerzo.fecha.anno);
 
 }
@@ -954,11 +968,124 @@ void mostrarAlmuerzos(eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[],
     printf("ID\tLegajo\tNombre\tComida\tFecha");
 
     for(int i=0 ; i<tamAlm ; i++){
-        mostrarAlmuerzo(almuerzos[i], comidas, vec, tamCom, tam);
+        if(almuerzos[i].id!=0){
+            mostrarAlmuerzo(almuerzos[i], comidas, vec, tamCom, tam);
+        }
     }
+
+}
+
+void inicializarAlmuerzos(eAlmuerzo almuerzos[], int tamAlm){
+
+    for(int i=0 ; i<tamAlm ; i++){
+        almuerzos[i].id=0;
+    }
+
+}
+
+void inicializarComidas(eComida comidas[], int tamCom){
+
+    for(int i=0 ; i<tamCom ; i++){
+        comidas[i].id=0;
+    }
+
+}
+
+void mostrarComidas(eComida comidas[], int tamCom){
+
+    for(int i=0 ; i<tamCom ; i++){
+        if(comidas[i].id!=0){
+            printf("\nID: %d, %s", comidas[i].id, comidas[i].desc);
+        }
+    }
+}
+
+void cargarAlmuerzos(eAlmuerzo almuerzos[], eEmpleado vec[], eComida comidas[], int tam, int tamAlm, int tamCom){
+
+    char rta;
+    int indexAlm;
+    int idAlm;
+
+    do{
+
+        for(int i=0 ; i<tamAlm ; i++){
+            if(almuerzos[i].id==0){
+                indexAlm=i;
+                idAlm=i+100;
+                break;
+            }
+        }
+
+        almuerzos[indexAlm].id=idAlm;
+
+        printf("Almuerzo #%d\n", almuerzos[indexAlm].id);
+        printf("\nLegajo empleado: ");
+
+        for(int i=0 ; i<tam ; i++){
+            if(vec[i].ocupado!=0){
+                printf("\n\t%d %s", vec[i].legajo, vec[i].nombre);
+            }
+        }
+
+        printf("\n\nIngrese: ");
+        scanf("%d", &almuerzos[indexAlm].legajo);
+
+        printf("Id Comida: ");
+        mostrarComidas(comidas, tamCom);
+        printf("\nIngrese: ");
+        scanf("%d", &almuerzos[indexAlm].idComida);
+
+        printf("Ingrese fecha: ");
+        printf("\nDia: ");
+        scanf("%d", &almuerzos[indexAlm].fecha.dia);
+        printf("\nMes: ");
+        fflush(stdin);
+        scanf("%d", &almuerzos[indexAlm].fecha.mes);
+        printf("\nAnno: ");
+        fflush(stdin);
+        scanf("%d", &almuerzos[indexAlm].fecha.anno);
+
+
+
+        printf("Cargar otro almuerzo? S/N: ");
+        fflush(stdin);
+        rta=getchar();
+        rta=tolower(rta);
+
+    }while(rta=='s');
+
+}
+
+void cargarComidas(eComida comidas[], int tamCom){
+
+    int rta;
+    int indexCom;
+
+    do{
+
+        for(int i=0 ; i<tamCom ; i++){
+            if(comidas[i].id==0){
+                comidas[i].id=i+1;
+                printf("Comida #%d, ingrese: ", comidas[i].id);
+                fflush(stdin);
+                gets(comidas[i].desc);
+                break;
+            }
+        }
+
+        printf("Cargar otra comida? S/N: ");
+        fflush(stdin);
+        rta=getchar();
+        rta=tolower(rta);
+
+    }while(rta=='s');
+
+
 
 
 }
+
+
 
 
 
