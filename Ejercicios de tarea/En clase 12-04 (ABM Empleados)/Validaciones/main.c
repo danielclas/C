@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define TAM 3
 
@@ -29,8 +30,10 @@ int main()
 
     printf("Ingrese un entero: ");
     entero=getInt();
-    puts(entero);
+    printf("%d", entero);
 
+    //entero=getEdad();
+    //printf("%d", entero);
 
 
     return 0;
@@ -52,6 +55,42 @@ char getSexo(){
 
 int getInt(){
 
+    char auxiliar[50];
+    int len;
+    int flagOK;
+    int entero;
+
+    gets(auxiliar);
+    fflush(stdin);
+    len=strlen(auxiliar);
+
+    do{
+
+        flagOK=1;
+
+        for(int i=0 ; auxiliar[i]!='\0' ; i++){
+            if(auxiliar[0]=='-'){
+                continue;
+            }else{
+                if(isdigit(auxiliar[i])!=1 || auxiliar[i]=='.'){
+                    flagOK=0;
+                    break;
+                }
+            }
+        }
+
+
+        if(flagOK==1){
+            entero=atoi(auxiliar);
+        }else{
+            printf("Error. Ingrese nuevamente: ");
+            fflush(stdin);
+            gets(auxiliar);
+        }
+
+    }while(flagOK==0);
+
+    return entero;
 
 }
 
@@ -67,10 +106,13 @@ int getEdad(){
 
     int edad;
 
-    do{
-        printf("Ingrese edad: ");
+    printf("Ingrese edad: ");
+    edad=getInt();
+
+    while(edad<0){
+        printf("Error. Ingrese nuevamente: ");
         edad=getInt();
-    }while(edad<0);
+    }
 
     return edad;
 
