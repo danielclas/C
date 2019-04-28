@@ -5,7 +5,7 @@
 #include <ctype.h>
 
 #define TAM 9
-#define TAMSECT 5
+#define TAMSECT 20
 #define TAMCOM  5
 #define TAMALM  10
 
@@ -119,8 +119,8 @@ int main()
     inicializarSectores(sectores, TAMSECT);
     inicializarAlmuerzos(almuerzos, TAMALM);
     inicializarComidas(comidas, TAMCOM);
-    hardCodearSectores(sectores, TAMSECT);
-    hardCodearEmpleados(lista, TAM);
+    //hardCodearSectores(sectores, TAMSECT);
+    //hardCodearEmpleados(lista, TAM);
 
 
 
@@ -850,6 +850,7 @@ void cargarSectores(eSector sectores[], int tamSect){
     int j;
 
     do{
+
         for(j=0 ; j<tamSect ; j++){
             if(sectores[j].ID==0){
                 sectores[j].ID=j+1;
@@ -864,6 +865,8 @@ void cargarSectores(eSector sectores[], int tamSect){
         fflush(stdin);
         rta=getchar();
         rta=tolower(rta);
+
+
 
     }while(rta=='s');
 
