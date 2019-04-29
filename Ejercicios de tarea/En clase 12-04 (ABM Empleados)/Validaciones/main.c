@@ -5,13 +5,28 @@
 #include "validaciones.h"
 #define TAM 3
 
+int ingresarEntero(char mensaje[], char mensajeError[], int min, int max);
+
 
 int main()
 {
-    ePersona gente[1];
+    int entero;
 
-   agregarPersona(gente, 0);
-   mostrarPersona(gente[0]);
+    entero=ingresarEntero("Ingrese edad: ", "Edad incorrecta, ingrese de nuevo: ", 0, 10000);
+
+
+}
+
+int ingresarEntero(char mensaje[], char mensajeError[], int min, int max){
+
+    char cadena[50];
+    int entero;
+    int len;
+    int flagOK=1;
+
+    getInt()
+
+    return entero;
 
 
 }

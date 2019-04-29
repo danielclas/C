@@ -31,15 +31,16 @@ char getSexo(){
     return sexo;
 }
 
+
 int getInt(){
 
-    char auxiliar[50];
+   /** char auxiliar[50];
     int len;
     int flagOK;
     int entero;
 
-    gets(auxiliar);
     fflush(stdin);
+    gets(auxiliar);
     len=strlen(auxiliar);
 
     do{
@@ -47,14 +48,9 @@ int getInt(){
         flagOK=1;
 
         for(int i=0 ; i<len ; i++){
-            if(auxiliar[0]=='-'){
-                continue;
-            }else{
-                if(isdigit(auxiliar[i])!=1 || auxiliar[i]=='.'){
-                    flagOK=0;
-                    break;
-                }
-            }
+            if(auxiliar[i]<'0' )
+
+
         }
 
 
@@ -68,7 +64,7 @@ int getInt(){
 
     }while(flagOK==0);
 
-    return entero;
+    return entero;**/
 
 }
 

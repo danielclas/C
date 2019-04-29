@@ -6,13 +6,25 @@
 	<ctype.h>
 	"validaciones.h"
 
-1555971864 source:c:\users\alumno\desktop\nueva carpeta\laboratorio-1\ejercicios de tarea\en clase 12-04 (abm empleados)\validaciones\main.c
+1556579980 source:c:\users\alumno\desktop\nueva carpeta\laboratorio-1\ejercicios de tarea\en clase 12-04 (abm empleados)\validaciones\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validaciones.h"
 
 1556479756 c:\users\dani\desktop\new folder\laboratorio-1\laboratorio-1\ejercicios de tarea\en clase 12-04 (abm empleados)\validaciones\validaciones.h
 
 1556479775 source:c:\users\dani\desktop\new folder\laboratorio-1\laboratorio-1\ejercicios de tarea\en clase 12-04 (abm empleados)\validaciones\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validaciones.h"
+
+1556575214 c:\users\alumno\desktop\nueva carpeta\laboratorio-1\ejercicios de tarea\en clase 12-04 (abm empleados)\validaciones\validaciones.h
+
+1556579454 source:c:\users\alumno\desktop\nueva carpeta\laboratorio-1\ejercicios de tarea\en clase 12-04 (abm empleados)\validaciones\validaciones.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
