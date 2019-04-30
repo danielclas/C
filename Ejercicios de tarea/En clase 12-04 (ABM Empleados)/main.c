@@ -5,8 +5,8 @@
 #include <ctype.h>
 
 #define TAM 9
-#define TAMSECT 5
-#define TAMCOM  5
+#define TAMSECT 20
+#define TAMCOM  10
 #define TAMALM  10
 
 //LINEA DE PRUEBA EN GIT
@@ -101,8 +101,8 @@ int main()
 {
     eEmpleado lista[TAM];
     eSector sectores[TAMSECT];
-    eComida comidas[TAMCOM]={{1, "Arroz"}, {2, "Fideos"}, {3, "Milanesas"} , {4, "Hamburguesa"}, {5, "Pollo"}};
-    eAlmuerzo almuerzos[TAMALM]={
+    eComida comidas[TAMCOM];//={{1, "Arroz"}, {2, "Fideos"}, {3, "Milanesas"} , {4, "Hamburguesa"}, {5, "Pollo"}};
+    eAlmuerzo almuerzos[TAMALM];/**={
         {101, 1001, 4, {15,12,2019}}
         ,{102, 1004, 1, {6,2,2019}}
         ,{103, 1006, 3, {7,9,2019}}
@@ -113,15 +113,15 @@ int main()
         ,{108, 1001, 3, {3,5,2019}}
         ,{109, 1003, 2, {8,2,2019}}
         ,{110, 1005, 5, {25,11,2019}}
-     };
+     };**/
     int rta;
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
-    //inicializarAlmuerzos(almuerzos, TAMALM);
-    //inicializarComidas(comidas, TAMCOM);
-    hardCodearSectores(sectores, TAMSECT);
-    hardCodearEmpleados(lista, TAM);
+     inicializarAlmuerzos(almuerzos, TAMALM);
+    inicializarComidas(comidas, TAMCOM);
+    //hardCodearSectores(sectores, TAMSECT);
+    //hardCodearEmpleados(lista, TAM);
 
 
 
