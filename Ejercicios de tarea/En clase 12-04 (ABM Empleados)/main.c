@@ -5,8 +5,8 @@
 #include <ctype.h>
 
 #define TAM 9
-#define TAMSECT 20
-#define TAMCOM  10
+#define TAMSECT 5
+#define TAMCOM  5
 #define TAMALM  10
 
 //LINEA DE PRUEBA EN GIT
@@ -82,6 +82,7 @@ void sueldosPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void printEmpPorSect(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void sexosPorSector(eEmpleado vec[], eSector sectores[], int tam, int tamSect);
 void cargarSectores(eSector sectores[], int tamSect);
+void femeninosPorComida (eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], int tamAlm, int tam, int tamCom);
 void menuInformes();
 int generarLegajo(eEmpleado vec[], int tam);
 int menuOpcion();
@@ -101,8 +102,8 @@ int main()
 {
     eEmpleado lista[TAM];
     eSector sectores[TAMSECT];
-    eComida comidas[TAMCOM];//={{1, "Arroz"}, {2, "Fideos"}, {3, "Milanesas"} , {4, "Hamburguesa"}, {5, "Pollo"}};
-    eAlmuerzo almuerzos[TAMALM];/**={
+    eComida comidas[TAMCOM]={{1, "Arroz"}, {2, "Fideos"}, {3, "Milanesas"} , {4, "Hamburguesa"}, {5, "Pollo"}};
+    eAlmuerzo almuerzos[TAMALM]={
         {101, 1001, 4, {15,12,2019}}
         ,{102, 1004, 1, {6,2,2019}}
         ,{103, 1006, 3, {7,9,2019}}
@@ -113,15 +114,15 @@ int main()
         ,{108, 1001, 3, {3,5,2019}}
         ,{109, 1003, 2, {8,2,2019}}
         ,{110, 1005, 5, {25,11,2019}}
-     };**/
+     };
     int rta;
 
     inicializarEmpleados(lista, TAM);
     inicializarSectores(sectores, TAMSECT);
-     inicializarAlmuerzos(almuerzos, TAMALM);
-    inicializarComidas(comidas, TAMCOM);
-    //hardCodearSectores(sectores, TAMSECT);
-    //hardCodearEmpleados(lista, TAM);
+     //inicializarAlmuerzos(almuerzos, TAMALM);
+    //inicializarComidas(comidas, TAMCOM);
+    hardCodearSectores(sectores, TAMSECT);
+    hardCodearEmpleados(lista, TAM);
 
 
 
@@ -1088,7 +1089,8 @@ void menuAlmuerzos(eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], eS
         printf("\n\t4- Mostrar almuerzos");
         printf("\n\t5- Mostrar almuerzo por sector");
         printf("\n\t6- Mostrar almuerzo por comida");
-        printf("\n\t7- Volver al menu principal");
+        printf("\n\t7-Mostrar femeninos por comida");
+        printf("\n\t8- Volver al menu principal");
         printf("\n\nOpcion: ");
         scanf("%d", &opcion);
         printf("\n");
@@ -1125,13 +1127,32 @@ void menuAlmuerzos(eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], eS
                 system("pause");
                 break;
             case 7:
+                femeninosPorComida(almuerzos, comidas, vec, tamAlm, tam, tamCom);
+                system("pause");
+            case 8:
                 break;
             default:
                 system("cls");
        }
 
-    }while(opcion!=7);
+    }while(opcion!=8);
 
+}
+
+void femeninosPorComida (eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], int tamAlm, int tam, int tamCom){
+
+    for(int i=0 ; i<tamCom ; i++){
+        printf("\nFemeninos que comieron %s\n", comidas[i].desc);
+        for(int j=0 ; j<tamAlm ; j++){
+            for(int k=0 ; k<tam ; k++){
+                if(comidas[i].id==almuerzos[j].idComida){
+                    if(almuerzos[j].legajo==vec[k].legajo && vec[k].sexo=='f'){
+                        mostrarAlmuerzo(almuerzos[j], comidas, vec, tamCom, tam);
+                    }
+                }
+            }
+        }
+    }
 }
 
 void mostrarAlmuerzoPorSector(eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], eSector sectores[], int tamSec, int tamAlm, int tam, int tamCom){
