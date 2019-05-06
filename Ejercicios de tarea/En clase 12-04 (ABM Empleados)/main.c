@@ -1090,7 +1090,8 @@ void menuAlmuerzos(eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], eS
         printf("\n\t5- Mostrar almuerzo por sector");
         printf("\n\t6- Mostrar almuerzo por comida");
         printf("\n\t7-Mostrar femeninos por comida");
-        printf("\n\t8- Volver al menu principal");
+        printf("\n\t8- Comida preferida por sector");
+        printf("\n\t9- Volver al menu principal");
         printf("\n\nOpcion: ");
         scanf("%d", &opcion);
         printf("\n");
@@ -1130,28 +1131,34 @@ void menuAlmuerzos(eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], eS
                 femeninosPorComida(almuerzos, comidas, vec, tamAlm, tam, tamCom);
                 system("pause");
             case 8:
+                //comidaFavPorSector();
+                break;
+            case 9:
                 break;
             default:
                 system("cls");
        }
 
-    }while(opcion!=8);
+    }while(opcion!=9);
 
 }
 
 void femeninosPorComida (eAlmuerzo almuerzos[], eComida comidas[], eEmpleado vec[], int tamAlm, int tam, int tamCom){
 
+    int f;
+
     for(int i=0 ; i<tamCom ; i++){
-        printf("\nFemeninos que comieron %s\n", comidas[i].desc);
+        f=0;
         for(int j=0 ; j<tamAlm ; j++){
             for(int k=0 ; k<tam ; k++){
                 if(comidas[i].id==almuerzos[j].idComida){
                     if(almuerzos[j].legajo==vec[k].legajo && vec[k].sexo=='f'){
-                        mostrarAlmuerzo(almuerzos[j], comidas, vec, tamCom, tam);
+                        f++;
                     }
                 }
             }
         }
+        printf("\nFemeninos que comieron %s: %d\n", comidas[i].desc, f);
     }
 }
 
@@ -1201,14 +1208,4 @@ void mostarAlmuerzosPorComida(eAlmuerzo almuerzos[], eComida comidas[], eEmplead
     }
 
 }
-
-
-
-
-
-
-
-
-
-
 
