@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1557444351 source:c:\users\alumno\desktop\validar fecha\main.c
+	<stdio.h>
+	<stdlib.h>
+
