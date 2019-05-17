@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1558999218 source:c:\users\alumno\desktop\archivos\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1558117380 source:c:\users\alumno\desktop\nueva carpeta\laboratorio-1\practica archivos\ejemplo archivos profesor - viernes 31\archivos\archivos\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
