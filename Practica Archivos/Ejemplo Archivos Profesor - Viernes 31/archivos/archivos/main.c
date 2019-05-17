@@ -11,6 +11,7 @@ typedef struct
     char apellido[20];
     float sueldo;
     int estado;
+
 } eEmpleado;
 
 ///Ya no se usa void inicializarEmpleados(eEmpleado** vec, int size);
@@ -24,7 +25,7 @@ int altaEmpleado(eEmpleado** vec, int size);
 void guardarEmpleadosBinario(eEmpleado** vec, int size);
 void cargarEmpleados(eEmpleado** vec, int size);
 void imprimirEmpleados(eEmpleado** vec, int tam);
-int agrandarLista(eEmpleado** vec, int size);
+
 
 int main()
 {
@@ -35,6 +36,7 @@ int main()
     ///TAM punteros a empleados
     eEmpleado** lista = (eEmpleado**) malloc(sizeof(eEmpleado*));
     ///Lista pasa a ser puntero a puntero
+    eEmpleado** auxLista;
 
 
     if( lista == NULL)
@@ -61,9 +63,12 @@ int main()
         case 2:
             if(altaEmpleado(lista, size)==1){
                 size++;
-                if(agrandarLista(lista, size)==1){
+                auxLista=(eEmpleado**) realloc(lista, sizeof(eEmpleado*)*(size+1));
+                if(auxLista!=NULL){
                     printf("Alta exitosa");
+                    lista=auxLista;
                 }
+
             }
             system("pause");
             break;
@@ -104,23 +109,11 @@ int inicializarEmpleados(eEmpleado* vec, int tam)
     {
         (vec + i)->estado = 0;
     }
+
+    return 0;
 }
 
-int agrandarLista(eEmpleado** vec, int size){
 
-    int todoOK=0;
-    eEmpleado** aux;
-
-    aux =(eEmpleado**) realloc(vec, sizeof(eEmpleado*)*(size+1));
-
-    if(aux!=NULL){
-        vec=aux;
-        todoOK=1;
-    }
-
-    return todoOK;
-
-}
 
 eEmpleado* newEmpleado()
 {
@@ -141,6 +134,7 @@ eEmpleado* newEmpleadoParam(int id, char* nombre, char* apellido, float sueldo)
 {
 
     eEmpleado* emp = (eEmpleado*) malloc(sizeof(eEmpleado));
+
     if(emp != NULL)
     {
         emp->id = id;
@@ -149,6 +143,7 @@ eEmpleado* newEmpleadoParam(int id, char* nombre, char* apellido, float sueldo)
         emp->sueldo = sueldo;
         emp->estado = 1;
     }
+
     return emp;
 }
 
@@ -187,8 +182,7 @@ void mostrarEmpleados(eEmpleado** vec, int size)
 
 }
 
-void mostrarEmpleado(eEmpleado* emp)
-{
+void mostrarEmpleado(eEmpleado* emp){
 
     if( emp != NULL)
     {
@@ -252,8 +246,8 @@ int altaEmpleado(eEmpleado** vec, int size)
 
         eEmpleado* nuevoEmpleado = newEmpleadoParam(auxInt, auxCad, auxCad2, auxFloat);
 
-        if(nuevoEmpleado != NULL)
-        {
+        if(nuevoEmpleado != NULL){
+
             *(vec + size) = nuevoEmpleado;
             todoOK=1;
             ///free(nuevoEmpleado);
@@ -293,9 +287,9 @@ void guardarEmpleadosBinario(eEmpleado** vec, int size)
     if( vec != NULL && size >0)
     {
         f = fopen("./empleados.bin", "wb");
+
         if(f != NULL)
         {
-
             for(int i=0; i < size; i++)
             {
                 if( (*(vec + i))->estado == 1)
@@ -303,8 +297,8 @@ void guardarEmpleadosBinario(eEmpleado** vec, int size)
                     fwrite( (vec+ i), sizeof(eEmpleado), 1, f);
                 }
             }
-
         }
+
         fclose(f);
     }
 }
@@ -322,7 +316,6 @@ void cargarEmpleados(eEmpleado** vec, int size)
     {
 
         indice = buscarLibre(vec, size);
-
         cant = fread( (vec + indice), sizeof(eEmpleado), 1, f);
 
      if( cant < 1){
