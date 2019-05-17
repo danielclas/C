@@ -57,7 +57,7 @@ int main()
         {
 
         case 1:
-            cargarEmpleados(lista, size);
+            cargarEmpleados(&lista, size);
             system("pause");
             break;
         case 2:
@@ -303,20 +303,28 @@ void guardarEmpleadosBinario(eEmpleado** vec, int size)
     }
 }
 
+int cargaDesdeBinario(eEmpleado** vec, int size){
+
+
+
+
+}
+
 
 void cargarEmpleados(eEmpleado** vec, int size)
 {
-    int indice;
+    ///int indice;
     FILE* f;
     int cant;
+    eEmpleado** aux;
 
     f = fopen("./empleados.bin", "rb");
 
     while( !feof(f))
     {
-
-        indice = buscarLibre(vec, size);
-        cant = fread( (vec + indice), sizeof(eEmpleado), 1, f);
+        eEmpleado* unEmpleado=newEmpleado();
+        ///indice = buscarLibre(vec, size);
+        cant = fread( unEmpleado, sizeof(eEmpleado), 1, f);
 
      if( cant < 1){
         if(feof(f)){
@@ -327,6 +335,15 @@ void cargarEmpleados(eEmpleado** vec, int size)
             printf("Problemas para leer el archivo");
         }
        }
+
+
+     size++;
+     aux=(eEmpleado**) realloc(*vec, sizeof(eEmpleado*)*(size+1));
+
+     if(aux!=NULL){
+        vec=aux;w33
+     }
+
     }
 
     fclose(f);
