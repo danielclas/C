@@ -65,6 +65,7 @@ int main()
     mostrarEmpleados(lista, 3);
 
 
+
     while(*p != '\0'){
         printf("%c", *p);
         p++;
@@ -118,6 +119,8 @@ void mostrarEmpleados(eEmpleado* lista, int tam){
     for(int i=0 ; i<tam ; i++){
         mostrarEmpleado(lista+i);
     }
+
+    printf("%s", (*(lista+1)).nombre);
 
 }
 
