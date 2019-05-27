@@ -1,0 +1,4 @@
+ID Nombre Apellido Sueldo
+
+55 daniel clas 7800.00656 juan perez 5500.00454 luis majul 4545.00
+
