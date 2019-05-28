@@ -1,0 +1,3 @@
+3,Juan,perez,200000
+4,ana,gomez,19000
+5,pedro,lopez,5000
