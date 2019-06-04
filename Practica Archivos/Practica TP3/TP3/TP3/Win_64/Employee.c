@@ -158,4 +158,60 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 
 }
 
+void mostrarEmpleado(Employee* emp){
 
+    //if(emp!=NULL)
+    printf("%d   %s  %d  %d\n",emp->id, emp->nombre, emp->horasTrabajadas, emp->sueldo);
+
+
+}
+
+int ordenarPorSueldo(void* emp1, void* emp2){
+
+    int retorno=0;
+    Employee* p1;
+    Employee* p2;
+
+    if(emp1!=NULL && emp2!=NULL){
+        p1=(Employee*) emp1;
+        p2=(Employee*) emp2;
+
+        if(p1->sueldo > p2->sueldo){
+            retorno=1;
+        }else{
+            if(p1->sueldo < p2->sueldo){
+                retorno=-1;
+            }else{
+                retorno=0;
+            }
+        }
+    }
+
+    return retorno;
+
+}
+
+int ordenarPorHoras(void* emp1, void* emp2){
+
+    int retorno=0;
+    Employee* p1;
+    Employee* p2;
+
+    if(emp1!=NULL && emp2!=NULL){
+        p1=(Employee*) emp1;
+        p2=(Employee*) emp2;
+
+        if(p1->horasTrabajadas > p2->horasTrabajadas){
+            retorno=1;
+        }else{
+            if(p1->horasTrabajadas < p2->horasTrabajadas){
+                retorno=-1;
+            }else{
+                retorno=0;
+            }
+        }
+    }
+
+    return retorno;
+
+}
