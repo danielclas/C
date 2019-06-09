@@ -16,12 +16,15 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement);
 LinkedList* ll_newLinkedList(void)
 {
     LinkedList* this;
+
     this = (LinkedList *)malloc(sizeof(LinkedList));
+
     if(this != NULL)
     {
         this->size=0;
         this->pFirstNode = NULL;
     }
+
     return this;
 }
 
@@ -54,19 +57,23 @@ int ll_len(LinkedList* this)
 static Node* getNode(LinkedList* this, int nodeIndex)
 {
     Node* pNode = NULL;
-    Node* auxNode = NULL;
 
-    if(this!=NULL){
+    if(this!=NULL && nodeIndex>=0 && nodeIndex<this->size){
         if(nodeIndex==0){
             pNode=this->pFirstNode;
         }else{
-            if(nodeIndex>0 && nodeIndex<this->size){
-           ///primer nodo mas index menos uno next element
-            auxNode=this->pFirstNode;
-            pNode=(auxNode+(nodeIndex-1))->pNextNode;
+            pNode=this->pFirstNode;
+            while(nodeIndex>0){
+                pNode=pNode->pNextNode;
+                nodeIndex--;
             }
         }
     }
+
+   /**Retorna un puntero al nodo que se encuentra en el índice especificado.
+    Verificando que el puntero this sea distinto de NULL y que index sea
+        positivo e inferior al tamaño del array. Si la
+    verificación falla la función retorna (NULL) y si tiene éxito retorna el puntero al nodo.**/
 
     return pNode;
 }
@@ -98,32 +105,61 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
 static int addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
     int returnAux = -1;
-    int add;
-    Node* aux;
+    Node* newNode=(Node*) malloc(sizeof(Node));
+    Node* prevNode=NULL;
+    Node* nextNode=NULL;
 
-    if(this!=NULL && nodeIndex>=0 && nodeIndex<=this->size){
-
-        if(nodeIndex==0){
+    if(this!=NULL && nodeIndex<=this->size && nodeIndex>=0){
+        if(nodeIndex==0 && this->size==0){
             this->pFirstNode->pElement=pElement;
             this->pFirstNode->pNextNode=NULL;
+            this->size++;
+            ///Si el index recibido es 0 y el tamaño del ll es 0,
+            ///lo agrega al indice 0 con pNextNode=NULL;
         }else{
-
-            if(nodeIndex<this->size){
-                aux=getNode(this, nodeIndex);
-                aux->pElement=pElement;
-
-                if(nodeIndex==(this->size)-1){
-                    aux->pNextNode=NULL;
-                }else{
-                    aux->pNextNode=getNode(this, nodeIndex+1);
-                }
+            if(nodeIndex==0 && this->size!=0){
+                /**
+                    Si el index recibido es 0 y el tamaño del ll es distinto a 0,
+                    el pFirstNode del ll es el nuevo nodo, y este apunta al nodo
+                    anteriormente en posicion 0.
+                **/
+                nextNode=getNode(this, 0);
+                newNode->pElement=pElement;
+                newNode->pNextNode=nextNode;
+                this->pFirstNode=newNode;
+                this->size++;
             }else{
-                add=ll_add(this, pElement);
+                if(nodeIndex==this->size){
+                    /**
+                        Si el index recibido es igual al size del ll,
+                        se agrega un nuevo nodo al final de este
+                        haciendo que el ultimo nodo actual apunte al nuevo nodo,
+                        y que este tenga pNextNode=NULL.
+                    **/
+                    prevNode=getNode(this, nodeIndex-1);
+                    prevNode->pNextNode=newNode;
+                    newNode->pElement=pElement;
+                    newNode->pNextNode=NULL;
+                    this->size++;
+                }else{
+                    /**
+                        Obtengo el nodo siguiente y el anterior al nodo en el nodeIndex recibido.
+                        En el indice anterior, pNextNode sera igual al nuevo nodo,
+                        y el pNextNode del nuevo nodo sera el obtenido en nextNode;
+                    **/
+                    prevNode=getNode(this, nodeIndex-1);
+                    nextNode=getNode(this, nodeIndex+1);
+                    prevNode->pNextNode=newNode;
+                    newNode->pNextNode=nextNode;
+                    newNode->pElement=pElement;
+                    nodeIndex--;
+                    this->size++;
+                }
             }
         }
     }
 
-    if(aux!=NULL || add==0){
+    if(newNode!=NULL){
         returnAux=0;
     }
 
@@ -165,18 +201,14 @@ int ll_add(LinkedList* this, void* pElement)
     int index;
 
     if(this!=NULL){
-        index=(this->size)-1;
+        index=this->size;
         returnAux=addNode(this, index, pElement);
     }
 
     return returnAux;
 }
 
-/**
-Agrega un elemento al final de LinkedList.
-Verificando que el puntero this sea distinto de NULL.
-Si la verificación falla la función retorna (-1) y si tiene éxito (0).
-**/
+
 
 /** \brief Permite realizar el test de la funcion addNode la cual es privada
  *
@@ -189,10 +221,19 @@ Si la verificación falla la función retorna (-1) y si tiene éxito (0).
 void* ll_get(LinkedList* this, int index)
 {
     void* returnAux = NULL;
+    Node* node;
+
+    if(this!=NULL && index>=0 && index<this->size){
+        node=getNode(this, index);
+        returnAux=(void*)node->pElement;
+    }
 
     return returnAux;
 }
 
+/**Retorna un puntero al elemento que se encuentra en el índice especificado. Verificando que el
+puntero this sea distinto de NULL y que index sea positivo e inferior al tamaño del array. Si la
+verificación falla la función retorna (NULL) y si tiene éxito retorna el elemento.**/
 
 /** \brief Modifica un elemento de la lista
  *
@@ -253,6 +294,10 @@ int ll_deleteLinkedList(LinkedList* this)
 {
     int returnAux = -1;
 
+    if(this!=NULL){
+        free(this);
+    }
+
     return returnAux;
 }
 
@@ -297,23 +342,9 @@ int ll_isEmpty(LinkedList* this)
  */
 int ll_push(LinkedList* this, int index, void* pElement)
 {
-    int returnAux = -1;
-    Node* aux;
-    Node* newN;
-
-    if(this!=NULL){
-        if(index==this->size){
-            aux=getNode(this, size-1);
-            newN->pElement=pElement;
-            newN->pNextNode=NULL;
-            aux->pNextNode=*newN;
-        }else{
-
-        }
-    }
 
 
-    return returnAux;
+    //return returnAux;
 }
 
 /**
