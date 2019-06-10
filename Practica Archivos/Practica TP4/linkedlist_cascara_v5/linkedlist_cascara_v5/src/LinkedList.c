@@ -504,12 +504,12 @@ int ll_contains(LinkedList* this, void* pElement)
 
     if(this!=NULL){
         index=ll_indexOf(this, pElement);
-        printf("%d ESTO ES INDEX ||", index);
+        ///printf("%d ESTO ES INDEX ||", index);
         if(index>=0){
-            puts("Estoy en return aux 1");
+            ///puts("Estoy en return aux 1");
             returnAux=1;
         }else{
-            puts("Estoy en return aux 0");
+            ///puts("Estoy en return aux 0");
             returnAux=0;
         }
     }
@@ -532,9 +532,26 @@ int ll_contains(LinkedList* this, void* pElement)
 int ll_containsAll(LinkedList* this,LinkedList* this2)
 {
     int returnAux = -1;
+    int size;
+    void* pElement=NULL;
+
+    if(this!=NULL && this2!=NULL){
+        returnAux=0;
+        size=ll_len(this2);
+        for(int i=size-1;i>=0;i--){
+            pElement=ll_get(this2, i);
+            if(ll_contains(this, pElement)){
+                returnAux=1;
+            }else{
+                returnAux=0;
+                break;
+            }
+        }
+    }
 
     return returnAux;
 }
+
 
 /** \brief Crea y retorna una nueva lista con los elementos indicados
  *
@@ -548,11 +565,24 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
 */
 LinkedList* ll_subList(LinkedList* this,int from,int to)
 {
-    LinkedList* cloneArray = NULL;
+    LinkedList* cloneArray = (LinkedList*) malloc(sizeof(LinkedList));
+    Node* node;
+    ///I IGUAL A FROM, MIENTRAS I MAYOR A TO
+    if(this!=NULL){
+        for(int i; i;i){
+            if(i==from){
+
+            }
+        }
+    }
 
     return cloneArray;
 }
 
+/**Retorna un nuevo LinkedList con el subconjunto de elementos. Verificando que el puntero this
+sea distinto de NULL y que tanto el indice 'from' como 'to' sean positivos e inferiores al tamaño
+del array. Si la verificación falla la función retorna (NULL) y si tiene éxito retorna el nuevo
+array**/
 
 
 /** \brief Crea y retorna una nueva lista con los elementos de la lista pasada como parametro
