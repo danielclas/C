@@ -405,7 +405,7 @@ int ll_indexOf(LinkedList* this, void* pElement)
         if(this->pFirstNode->pElement==pElement){
             returnAux=0;
         }else{
-            for(int i=this->size-1 ; i>1 ;i--){
+            for(int i=this->size-1 ; i>0 ;i--){
                 node=getNode(this, i);
                 if(node->pElement==pElement){
                     returnAux=i;
@@ -504,9 +504,12 @@ int ll_contains(LinkedList* this, void* pElement)
 
     if(this!=NULL){
         index=ll_indexOf(this, pElement);
+        printf("%d ESTO ES INDEX ||", index);
         if(index>=0){
+            puts("Estoy en return aux 1");
             returnAux=1;
         }else{
+            puts("Estoy en return aux 0");
             returnAux=0;
         }
     }
