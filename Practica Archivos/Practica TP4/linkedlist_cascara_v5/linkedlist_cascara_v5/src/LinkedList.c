@@ -630,11 +630,8 @@ LinkedList* ll_clone(LinkedList* this)
         cloneArray=ll_subList(this, 0, size-1);
     }
 
-
-
     return cloneArray;
 }
-
 
 
 /** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
@@ -648,7 +645,13 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux =-1;
 
+
+
     return returnAux;
 
 }
+Ordena los elementos del array recibiendo como parámetro la función que sera la encargada
+de determinar que elemento es mas grande que otro y si se debe ordenar de manera
+ascendente o descendente. Verificando que tanto el puntero this como el puntero a la funcion
+pFunc sean distintos de NULL. Si la verificación falla (-1) caso contrario retorna (1).
 
