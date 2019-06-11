@@ -354,7 +354,6 @@ int ll_clear(LinkedList* this)
             this->size--;
             returnAux=0;
         }else{
-
             this->pFirstNode=NULL;
             for(int i=this->size-1 ; i>0 ; i--){
                 node=getNode(this, i);
@@ -565,13 +564,22 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
 */
 LinkedList* ll_subList(LinkedList* this,int from,int to)
 {
-    LinkedList* cloneArray = (LinkedList*) malloc(sizeof(LinkedList));
-    Node* node;
-    ///I IGUAL A FROM, MIENTRAS I MAYOR A TO
-    if(this!=NULL){
-        for(int i; i;i){
-            if(i==from){
+    LinkedList* cloneArray;
 
+    void* pElement;
+
+    if(this!=NULL && from>=0 && from<to && to<this->size){
+        cloneArray=ll_newLinkedList();
+        if(cloneArray!=NULL){
+           ///node=getNode(this, from);
+            pElement=ll_get(this, from);
+            ll_add(cloneArray, pElement);
+            if(to-from>0){
+                for(int i=from+1;i<=to;i++){
+                    ///node=getNode(this, i);
+                    pElement=ll_get(this, i);
+                    ll_add(cloneArray, pElement);
+                }
             }
         }
     }
