@@ -623,9 +623,18 @@ array**/
 LinkedList* ll_clone(LinkedList* this)
 {
     LinkedList* cloneArray = NULL;
+    int size;
+
+    if(this!=NULL){
+        size=this->size;
+        cloneArray=ll_subList(this, 0, size-1);
+    }
+
+
 
     return cloneArray;
 }
+
 
 
 /** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
