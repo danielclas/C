@@ -652,7 +652,7 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     Node* nodeJ;
 
     if(this!=NULL && (order==1 || order==0) && pFunc!=NULL){
-        if(order){
+        if(order==1){
             for(int i=0 ; i<this->size-1 ; i++){
                 pElementI=ll_get(this, i);
                 for(int j=i+1 ; j<this->size ; j++){
@@ -691,7 +691,6 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
                         ll_set(this, j, pElementI);
                         ll_set(this, i, auxElement);
                     }
-
                 }
             }
         }
