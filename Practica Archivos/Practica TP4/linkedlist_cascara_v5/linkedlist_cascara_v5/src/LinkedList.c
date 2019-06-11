@@ -568,11 +568,26 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
 
     void* pElement;
 
-    if(this!=NULL && from>=0 && from<to && to<this->size){
+    if(this==NULL){
+        puts("\nTHIS ES NULL");
+    }else{
+        puts("\nTHIS NO ES NULL");
+        printf("\nSIZE DE THIS %d", this->size);
+    }
+    printf("FROM %d   TO %d\n", from, to);
+
+    if(this!=NULL && from>-1 && to<=this->size){
         cloneArray=ll_newLinkedList();
+        puts("CREA EL LL");
         if(cloneArray!=NULL){
+            puts("CLONE ARRAY DSTINTO DE NULL");
            ///node=getNode(this, from);
-            pElement=ll_get(this, from);
+            for(int i=from ; i<=to ; i++){
+                pElement=ll_get(this, i);
+                ll_add(cloneArray, pElement);
+                printf("I DEL FOR %d\n", i);
+            }
+            /*pElement=ll_get(this, from);
             ll_add(cloneArray, pElement);
             if(to-from>0){
                 for(int i=from+1;i<=to;i++){
@@ -580,8 +595,14 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
                     pElement=ll_get(this, i);
                     ll_add(cloneArray, pElement);
                 }
-            }
+            }*/
         }
+    }
+
+    if(cloneArray!=NULL){
+        printf("SIZE DEL CLONEARRAYS SI NO ES NULL %d\n", cloneArray->size);
+    }else{
+        puts("CLONE ARRAY ES NULL");
     }
 
     return cloneArray;
