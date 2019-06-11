@@ -569,23 +569,23 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
     void* pElement;
 
     if(this==NULL){
-        puts("\nTHIS ES NULL");
+       /// puts("\nTHIS ES NULL");
     }else{
-        puts("\nTHIS NO ES NULL");
-        printf("\nSIZE DE THIS %d", this->size);
+        ///puts("\nTHIS NO ES NULL");
+        ///printf("\nSIZE DE THIS %d", this->size);
     }
     printf("FROM %d   TO %d\n", from, to);
 
     if(this!=NULL && from>-1 && to<=this->size){
         cloneArray=ll_newLinkedList();
-        puts("CREA EL LL");
+        ///puts("CREA EL LL");
         if(cloneArray!=NULL){
-            puts("CLONE ARRAY DSTINTO DE NULL");
+           /// puts("CLONE ARRAY DSTINTO DE NULL");
            ///node=getNode(this, from);
             for(int i=from ; i<=to ; i++){
                 pElement=ll_get(this, i);
                 ll_add(cloneArray, pElement);
-                printf("I DEL FOR %d\n", i);
+              ///  printf("I DEL FOR %d\n", i);
             }
             /*pElement=ll_get(this, from);
             ll_add(cloneArray, pElement);
@@ -599,11 +599,11 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
         }
     }
 
-    if(cloneArray!=NULL){
+    /**if(cloneArray!=NULL){
         printf("SIZE DEL CLONEARRAYS SI NO ES NULL %d\n", cloneArray->size);
     }else{
         puts("CLONE ARRAY ES NULL");
-    }
+    }**/
 
     return cloneArray;
 }
@@ -644,14 +644,63 @@ LinkedList* ll_clone(LinkedList* this)
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux =-1;
+    void* auxElement;
+    void* pElementJ;
+    void* pElementI;
+    Node* auxNode;
+    Node* nodeI;
+    Node* nodeJ;
 
+    if(this!=NULL && (order==1 || order==0) && pFunc!=NULL){
+        if(order){
+            for(int i=0 ; i<this->size-1 ; i++){
+                pElementI=ll_get(this, i);
+                for(int j=i+1 ; j<this->size ; j++){
+                    pElementJ=ll_get(this, j);
+                    ///Si es orden ascendente
+                    if(pFunc(pElementI, pElementJ)>0){
+                        /*nodeI=getNode(this, i);
+                        nodeJ=getNode(this, j);*/
+                        auxElement=pElementJ;
+                        /*nodeJ->pElement=nodeI->pElement;
+                        nodeI->pElement=auxElement;
+                        auxNode=nodeJ;
+                        nodeJ=nodeI;
+                        nodeI=auxNode;*/
+                        ll_set(this, j, pElementI);
+                        ll_set(this, i, auxElement);
+                    }
 
+                }
+            }
+        }else{
+            for(int i=0 ; i<this->size-1 ; i++){
+                pElementI=ll_get(this, i);
+                for(int j=i+1 ; j<this->size ; j++){
+                    pElementJ=ll_get(this, j);
+                    ///Si es orden ascendente
+                    if(pFunc(pElementI, pElementJ)<0){
+                        /*nodeI=getNode(this, i);
+                        nodeJ=getNode(this, j);*/
+                        auxElement=pElementJ;
+                        /*nodeJ->pElement=nodeI->pElement;
+                        nodeI->pElement=auxElement;*/
+                        /*auxNode=nodeJ;
+                        nodeJ=nodeI;
+                        nodeI=auxNode;*/
+                        ll_set(this, j, pElementI);
+                        ll_set(this, i, auxElement);
+                    }
+
+                }
+            }
+        }
+
+        returnAux=0;
+    }
 
     return returnAux;
 
 }
-Ordena los elementos del array recibiendo como parámetro la función que sera la encargada
-de determinar que elemento es mas grande que otro y si se debe ordenar de manera
-ascendente o descendente. Verificando que tanto el puntero this como el puntero a la funcion
-pFunc sean distintos de NULL. Si la verificación falla (-1) caso contrario retorna (1).
+
 
