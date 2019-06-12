@@ -30,3 +30,34 @@
 
 1533133022 c:\users\alumno\desktop\nueva carpeta\laboratorio-1\practica archivos\practica tp3\tp3\tp3\win_64\controller.h
 
+1560351483 source:c:\users\dani\desktop\new folder\laboratorio-1\practica archivos\practica tp3\tp3\tp3\win_64\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1560089900 c:\users\dani\desktop\new folder\laboratorio-1\practica archivos\practica tp3\tp3\tp3\win_64\linkedlist.h
+
+1560356530 c:\users\dani\desktop\new folder\laboratorio-1\practica archivos\practica tp3\tp3\tp3\win_64\employee.h
+
+1560089900 source:c:\users\dani\desktop\new folder\laboratorio-1\practica archivos\practica tp3\tp3\tp3\win_64\employee.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"Employee.h"
+
+1560354325 source:c:\users\dani\desktop\new folder\laboratorio-1\practica archivos\practica tp3\tp3\tp3\win_64\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1560089900 c:\users\dani\desktop\new folder\laboratorio-1\practica archivos\practica tp3\tp3\tp3\win_64\controller.h
+
+1560351420 source:c:\users\dani\desktop\new folder\laboratorio-1\practica archivos\practica tp3\tp3\tp3\win_64\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+

@@ -13,6 +13,13 @@
  */
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
+    FILE* file;
+
+    file=fopen(path,"r");
+
+    if(file!=NULL){
+        puts("OK");
+    }
     return 1;
 }
 
@@ -37,6 +44,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
+
     return 1;
 }
 

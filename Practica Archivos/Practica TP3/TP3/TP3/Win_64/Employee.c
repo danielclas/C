@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<string.h>
 #include "Employee.h"
-
+#include "LinkedList.h"
 
 int employee_setId(Employee* this,int id){
 
@@ -127,7 +127,7 @@ Employee* employee_new(){
 
 }
 
-Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr){
+Employee* employee_newParametros(int id, char* nombre, int horasTrabajadas, int sueldo){
 
     Employee* this;
     int todoOk=0;
@@ -138,8 +138,8 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
             if(this!=NULL){
                 if(employee_setId(this, atoi(idStr)==1)){
                     if(employee_setNombre(this, nombreStr)){
-                        if(employee_setHorasTrabajadas(this, atoi(horasTrabajadasStr))){
-                            if(employee_setSueldo(this, atoi(sueldoStr))){
+                        if(employee_setHorasTrabajadas(this, horasTrabajadas){
+                            if(employee_setSueldo(this, sueldo){
                                 todoOk=1;
                             }
                         }
@@ -158,11 +158,51 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 
 }
 
+int altaEmpleado(LinkedList* listaEmpleados){
+
+    int aux=0;
+    Employee* empleado;
+    static int id=1001;
+    int horasTrabajadas, sueldo, intentos=1;
+    char nombre[128];
+
+    printf("Alta de empleado\n\n");
+    printf("ID: %d", id);
+
+    printf("Horas trabajadas: ");
+    horasTrabajadas=conseguirPositivo();
+    while(horasTrabajadas<0 && intentos<=3){
+        printf("Ingrese horas trabajadas validas: ");
+        horasTrabajadas=conseguirPositivo();
+        intentos++;
+    }
+
+    printf("Sueldo: ");
+    sueldo=conseguirPositivo();
+    while(sueldo<0 && intentos<=3){
+        printf("Ingrese horas trabajadas validas: ");
+        sueldo=conseguirPositivo();
+        intentos++;
+    }
+
+    printf("Nombre: ");
+    scanf("%s", nombre);
+
+    if(listaEmpleados!=NULL){
+        empleado=employee_newParametros(id, nombre, horasTrabajadas, sueldo);
+        ll_add(listaEmpleados, (void*)empleado);
+        id++;
+    }
+
+
+    return aux;
+
+}
+
 void mostrarEmpleado(Employee* emp){
 
-    //if(emp!=NULL)
+    if(emp!=NULL)
     printf("%d   %s  %d  %d\n",emp->id, emp->nombre, emp->horasTrabajadas, emp->sueldo);
-
 
 }
 

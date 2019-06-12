@@ -13,6 +13,22 @@
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 
+
+/*    while(!feof(f)){
+
+        cant=fscanf(f, "%[^,],%[^,],%[^,],%[^\n],\n", buffer[0], buffer[1], buffer[2], buffer[3]);
+
+       if(cant<4){
+            if(feof(f)){
+                break;
+            }else{
+                printf("Problemas para leer el archivo");
+                break;
+            }
+        }
+
+    }*/
+
     return 1;
 }
 
