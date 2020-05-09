@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1555100177 source:c:\users\alumno\desktop\tp 2\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1557431973 source:c:\users\dani\desktop\new folder\tp_laboratorio_2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"clas.h"
+
+1557516854 c:\users\dani\desktop\new folder\tp_laboratorio_2\clas.h
+
+1557518652 source:c:\users\dani\desktop\new folder\tp_laboratorio_2\clas.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"clas.h"
+
+1557182298 source:c:\users\alumno\desktop\nueva carpeta\tp_laboratorio_2\clas.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"clas.h"
+
+1557181357 c:\users\alumno\desktop\nueva carpeta\tp_laboratorio_2\clas.h
+
+1557185651 source:c:\users\alumno\desktop\nueva carpeta\tp_laboratorio_2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"clas.h"
+
+1557518652 source:c:\users\dani\desktop\new folder\new folder\tp_laboratorio_1\tp 2\clas.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"clas.h"
+
+1557516854 c:\users\dani\desktop\new folder\new folder\tp_laboratorio_1\tp 2\clas.h
+
+1557431973 source:c:\users\dani\desktop\new folder\new folder\tp_laboratorio_1\tp 2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"clas.h"
+

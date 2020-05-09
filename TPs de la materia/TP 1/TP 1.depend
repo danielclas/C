@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1553972235 source:c:\users\dani\desktop\programacion\tp 1\tp 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clas.h"
+
+1553973452 c:\users\dani\desktop\programacion\tp 1\tp 1\clas.h
+
+1553973555 source:c:\users\dani\desktop\programacion\tp 1\tp 1\clas.c
+	<stdio.h>
+	<stdlib.h>
+	"clas.h"
+
+1553974562 source:c:\users\dani\desktop\programacion\clone\tp_laboratorio_1\tp 1\clas.c
+	<stdio.h>
+	<stdlib.h>
+	"clas.h"
+
+1553974345 c:\users\dani\desktop\programacion\clone\tp_laboratorio_1\tp 1\clas.h
+
+1553976457 source:c:\users\dani\desktop\programacion\clone\tp_laboratorio_1\tp 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clas.h"
+
+1554066939 source:c:\users\dani\desktop\new folder\tp_laboratorio_1\tp 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clas.h"
+
+1554067933 c:\users\dani\desktop\new folder\tp_laboratorio_1\tp 1\clas.h
+
+1554067933 source:c:\users\dani\desktop\new folder\tp_laboratorio_1\tp 1\clas.c
+	<stdio.h>
+	<stdlib.h>
+	"clas.h"
+
